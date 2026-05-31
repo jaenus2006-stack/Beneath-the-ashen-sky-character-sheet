@@ -1,0 +1,889 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beneath the Ashen Sky — Protagonist Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--ash:#16130f;--ash2:#1f1a15;--panel:#241e18;--panel2:#2b2419;--line:#4a3e2e;--line2:#6b5a40;
+--vellum:#e9ddc2;--vellum2:#f1e8d2;--ink:#241d12;--ink-soft:#5a4b32;--bone:#d8cbad;--bone-dim:#9c8d6f;
+--oxblood:#8c2f24;--ember:#c0552e;--ember-bright:#e0743a;--brass:#c2a05c;--brass-bright:#e3c47e;--brass-deep:#8a6d36;
+--shadow:0 10px 30px rgba(0,0,0,.55);}
+*{box-sizing:border-box;}
+body{margin:0;color:var(--bone);font-family:"EB Garamond",Georgia,serif;font-size:16px;line-height:1.4;
+background:radial-gradient(1200px 700px at 12% -8%,rgba(192,85,46,.10),transparent 60%),radial-gradient(1000px 800px at 100% 0%,rgba(194,160,92,.07),transparent 55%),linear-gradient(180deg,#13100c,#1a1611 40%,#14110d);background-attachment:fixed;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;z-index:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 90px;position:relative;z-index:1;}
+.masthead{text-align:center;border-bottom:2px solid var(--brass-deep);padding-bottom:14px;margin-bottom:8px;}
+.masthead .kicker{font-family:"Cinzel",serif;letter-spacing:.42em;font-size:11px;color:var(--ember);text-transform:uppercase;margin-bottom:6px;}
+.masthead h1{font-family:"Cinzel",serif;font-weight:700;letter-spacing:.08em;font-size:clamp(26px,5vw,44px);margin:0;color:var(--vellum2);text-shadow:0 2px 0 #000,0 0 28px rgba(192,85,46,.25);}
+.masthead .sub{font-style:italic;color:var(--brass);font-size:15px;margin-top:4px;}
+.toolbar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0 4px;}
+.btn{font-family:"Cinzel",serif;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;background:linear-gradient(180deg,var(--panel2),var(--ash2));color:var(--brass-bright);border:1px solid var(--brass-deep);padding:8px 14px;border-radius:3px;transition:.15s;}
+.btn:hover{border-color:var(--brass-bright);color:#fff;box-shadow:0 0 14px rgba(194,160,92,.25);}
+.btn.danger{color:var(--ember-bright);border-color:#5e2a20;} .btn.danger:hover{border-color:var(--ember-bright);}
+.grid{display:grid;gap:16px;}.cols-2{grid-template-columns:1fr 1fr;}.cols-3{grid-template-columns:1.05fr 1fr 1fr;}
+.section{margin-top:16px;}
+.subgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:start;}
+.skillcols{column-width:300px;column-gap:24px;}
+.skillcols .skillgroup{break-inside:avoid;-webkit-column-break-inside:avoid;}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -2px;}
+.charflex{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;}
+.charmain{flex:1 1 440px;min-width:280px;}
+.portwrap{flex:0 0 21%;min-width:178px;max-width:260px;}
+.readout{font-family:"Cinzel",serif;font-size:12.5px;letter-spacing:.03em;color:var(--brass-bright);background:var(--ash);border:1px solid var(--line2);border-radius:4px;padding:7px 10px;margin:2px 0 9px;}
+.readout .k{color:var(--bone-dim);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;margin-right:7px;}
+.readout .none{color:var(--bone-dim);font-style:italic;}
+@media(max-width:880px){.cols-2,.cols-3{grid-template-columns:1fr;}}
+.panel{background:linear-gradient(180deg,rgba(43,36,25,.92),rgba(28,23,17,.96));border:1px solid var(--line);border-radius:6px;padding:16px;box-shadow:var(--shadow);position:relative;}
+.panel::before{content:"";position:absolute;inset:5px;border:1px solid rgba(106,90,64,.35);border-radius:4px;pointer-events:none;}
+.panel>*{position:relative;}
+.panel h2{font-family:"Cinzel",serif;font-weight:600;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-bright);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;}
+.panel h2 .mark{color:var(--ember);font-size:13px;}
+.panel.combat h2{color:var(--ember-bright);}.panel.fate h2{color:var(--brass-bright);}
+label.fld{display:block;margin-bottom:9px;}
+.fld .lab{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);display:block;margin-bottom:3px;}
+input[type=text],input[type=number],select,textarea{width:100%;font-family:"EB Garamond",Georgia,serif;font-size:15px;color:var(--ink);background:linear-gradient(180deg,var(--vellum2),var(--vellum));border:1px solid #b3a079;border-top-color:#8f7d56;border-radius:3px;padding:6px 8px;box-shadow:inset 0 1px 2px rgba(80,60,30,.18);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 2px rgba(192,85,46,.25),inset 0 1px 2px rgba(80,60,30,.18);}
+textarea{resize:vertical;min-height:60px;line-height:1.35;}
+select{cursor:pointer;padding-right:22px;}
+.row{display:flex;gap:10px;flex-wrap:wrap;}.row>*{flex:1;min-width:0;}
+.hint{font-size:12px;color:var(--bone-dim);font-style:italic;margin-top:2px;}
+.attrs{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+@media(max-width:680px){.attrs{grid-template-columns:repeat(3,1fr);}}
+.attr{text-align:center;background:linear-gradient(180deg,var(--panel2),var(--ash));border:1px solid var(--line2);border-radius:6px;padding:10px 6px 12px;}
+.attr .name{font-family:"Cinzel",serif;font-size:12px;letter-spacing:.14em;color:var(--brass);}
+.attr .abbr{font-size:10px;color:var(--bone-dim);letter-spacing:.2em;margin-bottom:6px;}
+.attr input{text-align:center;font-size:34px;font-family:"Cinzel",serif;font-weight:700;color:var(--oxblood);padding:2px;background:linear-gradient(180deg,#f3ebd6,#e6d9bc);}
+.attr .gov{font-size:10.5px;color:var(--bone-dim);margin-top:6px;line-height:1.25;min-height:26px;font-style:italic;}
+.portrait{width:100%;aspect-ratio:4/5;border:1px solid var(--line2);border-radius:5px;background:var(--ash) center/cover no-repeat;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--bone-dim);font-family:"Cinzel";font-size:11px;letter-spacing:.1em;text-align:center;overflow:hidden;}
+.portrait:hover{border-color:var(--brass);}
+.skillgroup{margin-bottom:14px;break-inside:avoid;}
+.skillgroup .gh{font-family:"Cinzel",serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ember);margin:0 0 6px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:3px;gap:6px;}
+.skillgroup .gh .ia{color:var(--brass);font-size:10px;display:inline-flex;align-items:center;gap:5px;}
+.iaval{font-family:"Cinzel";font-weight:700;font-size:12px;color:var(--brass-bright);background:var(--ash);border:1px solid var(--line2);border-radius:3px;min-width:22px;height:18px;display:inline-flex;align-items:center;justify-content:center;}
+table.sk{width:100%;border-collapse:collapse;}
+table.sk th{font-family:"Cinzel",serif;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim);text-align:center;font-weight:500;padding:1px 2px;}
+table.sk td{padding:1px 2px;}
+table.sk td.nm{font-size:13.5px;color:var(--bone);width:44%;}
+table.sk select{font-size:11.5px;padding:3px 16px 3px 5px;}
+table.sk input{font-size:12px;padding:3px 3px;text-align:center;}
+.osgf{width:30px;}
+.gbadge{font-family:"Cinzel";font-size:9px;color:var(--brass-bright);min-width:20px;display:inline-block;text-align:center;}
+.tot{font-family:"Cinzel",serif;font-weight:700;font-size:15px;color:var(--brass-bright);text-align:center;min-width:30px;display:inline-block;}
+.tot.zero{color:var(--bone-dim);font-weight:400;}
+.statband{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.stat{text-align:center;background:linear-gradient(180deg,#2c241a,#1d1812);border:1px solid var(--line2);border-radius:6px;padding:8px 4px;cursor:help;}
+.stat .v{font-family:"Cinzel",serif;font-weight:700;font-size:25px;color:var(--ember-bright);line-height:1;}
+.stat .v small{font-size:12px;color:var(--bone-dim);}
+.stat .l{font-family:"Cinzel",serif;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:4px;}
+.stat .f{font-size:10px;color:var(--brass);font-style:italic;margin-top:1px;}
+.defrow{display:grid;grid-template-columns:1.4fr .7fr 1.7fr;gap:6px;align-items:center;padding:4px 0;border-bottom:1px dotted var(--line);}
+.defrow .dn{font-family:"Cinzel",serif;font-size:11px;color:var(--bone);cursor:pointer;}
+.defrow .dn:hover{color:var(--ember-bright);}
+.defrow .dv{font-family:"Cinzel",serif;font-weight:700;font-size:17px;color:var(--brass-bright);text-align:center;}
+.defrow .df{font-size:10.5px;color:var(--bone-dim);font-style:italic;}
+.track{margin:10px 0;}
+.track .th{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+input.adj{width:46px;flex:0 0 46px;font-size:11px;padding:2px 3px;text-align:center;}
+.pips{display:flex;gap:5px;flex-wrap:wrap;}
+.pip{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line2);background:radial-gradient(circle at 35% 30%,#2a2218,#16130e);cursor:pointer;transition:.12s;}
+.pip.on{background:radial-gradient(circle at 35% 30%,var(--ember-bright),var(--oxblood));border-color:var(--ember-bright);box-shadow:0 0 8px rgba(192,85,46,.5);}
+.pip.brass.on{background:radial-gradient(circle at 35% 30%,var(--brass-bright),var(--brass-deep));border-color:var(--brass-bright);box-shadow:0 0 8px rgba(194,160,92,.5);}
+.wbox{display:flex;gap:3px;flex-wrap:wrap;}
+.wb{width:15px;height:18px;border:1.4px solid var(--line2);background:#16130e;cursor:pointer;border-radius:2px;transition:.1s;}
+.wb.on{background:linear-gradient(180deg,var(--ember),var(--oxblood));border-color:var(--ember-bright);}
+.wb.crit.on{background:linear-gradient(180deg,#d23,#700);}
+.woundgrid{display:grid;grid-template-columns:auto auto 1fr;gap:5px 8px;align-items:center;}
+.woundgrid .wl{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);white-space:nowrap;}
+.woundgrid .wl b{color:var(--brass);}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--line2);border-radius:14px;color:var(--bone-dim);cursor:pointer;background:var(--ash2);transition:.12s;user-select:none;}
+.chip.on{background:linear-gradient(180deg,var(--oxblood),#5e1f17);border-color:var(--ember);color:#fff;box-shadow:0 0 8px rgba(140,47,36,.5);}
+table.eq{width:100%;border-collapse:collapse;font-size:13px;}
+table.eq th{font-family:"Cinzel",serif;font-size:7.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--bone-dim);padding:3px 2px;border-bottom:1px solid var(--line);font-weight:500;}
+table.eq td{padding:2px;}
+table.eq input{font-size:12px;padding:3px 3px;}table.eq input.c{text-align:center;}table.eq select{font-size:11px;padding:3px 14px 3px 4px;}
+.addbtn{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px dashed var(--line2);color:var(--brass);padding:5px 10px;border-radius:3px;cursor:pointer;margin-top:6px;}
+.addbtn:hover{border-color:var(--brass-bright);color:var(--brass-bright);}
+.rm{cursor:pointer;color:#7a5;opacity:.5;font-size:15px;text-align:center;}.rm:hover{color:var(--ember-bright);opacity:1;}
+.armourgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;text-align:center;}
+.armourgrid .al{font-family:"Cinzel",serif;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--bone-dim);}
+.armourgrid input{text-align:center;font-family:"Cinzel",serif;font-weight:700;color:var(--oxblood);}
+.tiers{display:flex;gap:6px;margin:6px 0 4px;}
+.tier{flex:1;text-align:center;border:1px solid var(--line2);border-radius:4px;padding:7px 2px;cursor:pointer;background:var(--ash2);transition:.12s;position:relative;}
+.tier .rn{font-family:"Cinzel",serif;font-weight:700;font-size:15px;color:var(--bone-dim);}
+.tier.on{background:linear-gradient(180deg,var(--brass-deep),#5d4a24);border-color:var(--brass-bright);}.tier.on .rn{color:#fff;}
+.tier.conf::after{content:"⚔";position:absolute;top:-8px;right:-4px;font-size:11px;color:var(--ember);}
+.tierpanel{margin:6px 0;}
+.tierpanel .tph{font-family:"Cinzel";font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);margin-bottom:3px;}
+.sceau{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.legend{font-size:11.5px;color:var(--bone-dim);line-height:1.55;}
+.legend b{color:var(--brass);font-family:"Cinzel",serif;font-size:10px;letter-spacing:.03em;text-transform:uppercase;}
+.legend .e{color:var(--ember);}
+/* GGB ledger */
+.gcard{border:1px solid var(--line);border-radius:5px;background:rgba(20,16,12,.45);margin-bottom:10px;padding:10px;}
+.gcard .gtop{display:flex;gap:8px;align-items:center;}
+.gcard select{flex:1;}
+.gtag{font-family:"Cinzel";font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:10px;white-space:nowrap;border:1px solid;}
+.gtag.G{color:var(--brass-bright);border-color:var(--brass-deep);} .gtag.R{color:var(--ember-bright);border-color:#5e2a20;}
+.geff{margin-top:8px;display:flex;flex-direction:column;gap:5px;}
+.efrow{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;line-height:1.35;}
+.eftag{font-family:"Cinzel";font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;padding:2px 5px;border-radius:3px;margin-top:2px;white-space:nowrap;flex:none;}
+.eftag.a{background:#2c3a26;color:#a9d18e;} .eftag.t{background:#3a3326;color:var(--brass-bright);} .eftag.n{background:#2b2419;color:var(--bone-dim);}
+.efrow.auto .et{color:#bfe0aa;} .efrow.note .et{color:var(--bone-dim);font-style:italic;}
+.sw{position:relative;width:34px;height:18px;border-radius:10px;background:#2a2218;border:1px solid var(--line2);cursor:pointer;flex:none;margin-top:1px;transition:.15s;}
+.sw::after{content:"";position:absolute;top:1px;left:1px;width:14px;height:14px;border-radius:50%;background:var(--bone-dim);transition:.15s;}
+.sw.on{background:var(--brass-deep);border-color:var(--brass-bright);}.sw.on::after{left:17px;background:var(--brass-bright);}
+.active-mods{border:1px solid var(--brass-deep);border-radius:5px;background:rgba(60,48,26,.25);padding:8px 10px;margin-top:6px;font-size:12px;color:var(--brass-bright);min-height:20px;}
+.active-mods .amh{font-family:"Cinzel";font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin-bottom:4px;}
+.active-mods .none{color:var(--bone-dim);font-style:italic;}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(8,6,4,.72);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;}
+.modal.show{display:flex;}
+.modal .box{max-width:540px;background:linear-gradient(180deg,#2a231a,#1c1711);border:1px solid var(--brass-deep);border-radius:8px;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.7);position:relative;}
+.modal .box h3{font-family:"Cinzel";font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-bright);margin:0 0 10px;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.modal .box p{font-size:14px;line-height:1.55;color:var(--bone);margin:0;}
+.modal .box b{color:var(--brass-bright);}
+.modal .x{position:absolute;top:12px;right:14px;cursor:pointer;color:var(--bone-dim);font-size:20px;}.modal .x:hover{color:var(--ember-bright);}
+.reflink{cursor:pointer;border-bottom:1px dotted var(--line2);}
+.reflink:hover{color:var(--ember-bright);border-color:var(--ember-bright);}
+.footnote{text-align:center;font-style:italic;color:var(--bone-dim);font-size:12px;margin-top:26px;}
+.save-note{font-size:11px;color:var(--bone-dim);text-align:center;font-style:italic;margin-top:8px;}
+.zone{display:flex;align-items:center;gap:12px;margin:28px 0 2px;}
+.zone::before,.zone::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--brass-deep),transparent);}
+.zone span{font-family:"Cinzel",serif;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass-bright);white-space:nowrap;}
+.zone.combat span{color:var(--ember-bright);}
+.gcard.collapsed .geff{display:none;}
+.gcollapse{cursor:pointer;color:var(--bone-dim);font-size:13px;width:16px;text-align:center;flex:none;user-select:none;}
+.gcollapse:hover{color:var(--brass-bright);}
+.gtools{display:flex;justify-content:flex-end;gap:14px;margin-bottom:6px;}
+.gtools button{background:none;border:none;color:var(--brass);font-family:"Cinzel";font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
+.gtools button:hover{color:var(--brass-bright);}
+.pickwrap{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap;}
+.pickwrap label{font-family:"Cinzel";font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);}
+.pickwrap select{max-width:300px;flex:1;}
+/* ---- two-page spread ---- */
+.spread{display:flex;align-items:stretch;margin-top:16px;border:1px solid var(--line2);border-radius:8px;overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.5);background:var(--ash);}
+.page{flex:1 1 0;min-width:0;padding:20px 22px;}
+.page-left{border-right:1px solid var(--brass-deep);box-shadow:inset -16px 0 26px -20px #000;}
+.page-right{box-shadow:inset 16px 0 26px -20px #000;}
+.page>.panel{margin-top:14px;}
+.page>.panel:first-child,.page>.zone:first-child{margin-top:0;}
+.page .zone{margin:20px 0 2px;}
+@media(max-width:980px){.spread{flex-direction:column;}.page-left{border-right:none;border-bottom:1px solid var(--brass-deep);box-shadow:none;}.page-right{box-shadow:none;}}
+/* ---- attributes: physical | mental ---- */
+.attrcols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.attrcol .attrhead{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-bright);text-align:center;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--line2);}
+.attrcol .attr{margin-bottom:8px;}
+.attrcol .attr:last-child{margin-bottom:0;}
+@media(max-width:430px){.attrcols{grid-template-columns:1fr;}}
+/* ---- weapon cards ---- */
+.wcard{border:1px solid var(--line2);border-radius:6px;padding:9px 11px;margin-bottom:9px;background:rgba(20,16,12,.4);}
+.wcard.active{border-color:var(--ember);box-shadow:0 0 0 1px var(--ember) inset,0 8px 22px -12px var(--ember);}
+.wtop{display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+.wtop input,.wtop select{padding:4px 6px;font-size:13px;}
+.wtop select[data-wpick]{flex:1 1 150px;min-width:120px;}
+.wtop input[data-wk="name"]{flex:1 1 130px;min-width:100px;text-align:left;}
+.wtop select[data-wk="skill"]{flex:0 1 132px;}
+.wtop .qbox{display:flex;align-items:center;gap:4px;flex:none;}
+.wtop .qbox label{font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim);}
+.wtop input[data-wk="qual"]{width:40px;text-align:center;}
+.wmeta{font-size:11px;color:var(--bone-dim);margin-top:6px;font-style:italic;}
+.wcalc{display:flex;gap:18px;flex-wrap:wrap;margin-top:7px;align-items:baseline;font-family:"EB Garamond",serif;}
+.wcalc .blk .lab{font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:var(--bone-dim);display:block;margin-bottom:1px;}
+.wcalc b{font-family:"Cinzel",serif;font-size:16px;color:var(--ember-bright);font-weight:600;}
+.wcalc .dmgv{font-family:"Cinzel",serif;font-size:14px;color:var(--vellum);}
+.wcalc .dmgv s{color:var(--bone-dim);text-decoration:none;font-size:11px;}
+/* ---- active strike readout ---- */
+.strike{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:8px;}
+.strike .sc{background:var(--ash2);border:1px solid var(--line2);border-radius:5px;padding:6px 4px;text-align:center;}
+.strike .sc .v{font-family:"Cinzel",serif;font-size:18px;color:var(--ember-bright);}
+.strike .sc .v small{font-size:10px;color:var(--bone-dim);}
+.strike .sc .l{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:2px;}
+/* ---- field sizing ---- */
+.armourgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;}
+.numfld{max-width:96px;}
+.tight input[type=number]{max-width:70px;}
+.wcards{margin-top:2px;}
+.runiclist .rl-row{display:flex;gap:8px;align-items:center;margin-bottom:6px;}
+.runiclist .rl-name{flex:1 1 52%;text-align:left;}
+.runiclist .rl-val{flex:1 1 38%;text-align:left;}
+@media print{.spread{display:block;border:none;box-shadow:none;}.page{padding:0;border:none !important;box-shadow:none !important;}.wcard{break-inside:avoid;}}
+
+@media print{body{background:#fff;color:#1a1a1a;font-size:11px;}body::before{display:none;}.wrap{max-width:100%;padding:0;}
+.toolbar,.save-note,.addbtn,.rm,.footnote,.sw,.modal{display:none !important;}
+.panel{background:#fff;box-shadow:none;border:1px solid #999;break-inside:avoid;padding:8px;}.panel::before{display:none;}
+.panel h2{color:#000;border-color:#999;}.masthead h1{color:#000;text-shadow:none;}.masthead .kicker{color:#7c2d2d;}.masthead .sub{color:#555;}
+input,select,textarea{background:#fff !important;color:#000 !important;border:1px solid #aaa;box-shadow:none;}
+.attr input,.armourgrid input,.tot,.stat .v,.defrow .dv,.attr .name,.iaval{color:#000 !important;}
+.pip,.wb{border-color:#666;}.pip.on{background:#777 !important;}.wb.on{background:#888 !important;}.wb.crit.on{background:#444 !important;}
+.chip{color:#333;border-color:#999;}.chip.on{background:#ccc !important;color:#000;}.tier.on{background:#ddd !important;}.tier.on .rn{color:#000;}
+.eftag.a{background:#ddd;color:#000;}.eftag.t,.eftag.n{background:#eee;color:#000;}.gcard{break-inside:avoid;}.grid{gap:8px;}.cols-2,.cols-3{grid-template-columns:1fr 1fr;}}
+</style></head><body>
+<div class="wrap">
+<header class="masthead">
+  <div class="kicker">Beneath the Ashen Sky</div>
+  <h1 id="charName">The Protagonist</h1>
+  <div class="sub" id="charTitles">A character marked by fate &mdash; bearer of a Chronique Infinie and the Sceau du Sort</div>
+  <div class="toolbar">
+    <button class="btn" onclick="window.print()">&#9112; Print / PDF</button>
+    <button class="btn" onclick="saveJSON()">&#10515; Save (.json)</button>
+    <button class="btn" onclick="document.getElementById('loadfile').click()">&#10514; Load</button>
+    <input type="file" id="loadfile" accept="application/json" style="display:none" onchange="loadJSON(event)">
+    <button class="btn danger" onclick="if(confirm('Clear the whole sheet?'))location.reload()">&#10005; Clear</button>
+  </div>
+  <div class="save-note">Everything recalculates as you type. <b>Save</b> writes a character file (portrait included); nothing is stored online.</div>
+</header>
+
+<div class="spread">
+<!-- ===================== LEFT PAGE ===================== -->
+<div class="page page-left">
+
+  <section class="panel">
+    <h2><span class="mark">&#10070;</span> The Character</h2>
+    <div class="row">
+      <label class="fld" style="flex:2"><span class="lab">Name</span><input type="text" data-f="name" placeholder="Your protagonist’s name"></label>
+      <label class="fld" style="max-width:96px"><span class="lab">Race</span><input type="text" data-f="race" value="Human"></label>
+      <label class="fld numfld" style="max-width:74px"><span class="lab">Age</span><input type="number" data-f="age" placeholder="20"></label>
+    </div>
+    <div class="row">
+      <label class="fld" style="flex:2"><span class="lab">Titles &amp; Style</span><input type="text" data-f="titles" placeholder="Ser, Dame, of House…"></label>
+      <label class="fld"><span class="lab">Society</span><input type="text" data-f="society" placeholder="Feudal / Tribal…"></label>
+    </div>
+    <div class="row">
+      <label class="fld"><span class="lab">Prime Occupation</span><select data-f="occprime" id="occprime"></select></label>
+      <label class="fld"><span class="lab">Sub-Occupation</span><select data-f="occsub" id="occsub"></select></label>
+    </div>
+    <div class="readout" id="occReadout"><span class="k">Occupation</span><span class="none">choose a prime and sub-occupation</span></div>
+    <p class="hint" id="osgnote">Choosing an occupation fills every skill’s OSG from the official table (higher value where a skill sits in two groups). Any OSG cell stays editable.</p>
+    <label class="fld" style="margin-bottom:0"><span class="lab">Appearance &amp; Bearing</span><input type="text" data-f="appearance"></label>
+  </section>
+
+  <section class="panel">
+    <h2><span class="mark">&#10038;</span> Attributes <span style="font-family:'EB Garamond';font-size:11px;letter-spacing:0;text-transform:none;color:var(--bone-dim);font-style:italic;margin-left:6px">score 0&ndash;4 (Virtues allow 5&ndash;6) &middot; the score is the modifier</span></h2>
+    <div class="attrs" id="attrs"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="mark">&#9884;</span> Skills</h2>
+    <p class="hint" style="margin-top:-6px">Roll = d10 + Attribute + Competency + OSG + Gift bonuses. The total shown is that static modifier. <span class="reflink" onclick="popup('ba')">Battle Awareness</span></p>
+    <div id="skills" class="skillcols"></div>
+  </section>
+
+</div>
+
+<!-- ===================== RIGHT PAGE ===================== -->
+<div class="page page-right">
+
+  <section class="panel">
+    <h2><span class="mark">&#9728;</span> Portrait</h2>
+    <div class="portwrap" style="max-width:250px;margin:0 auto;flex:none">
+      <div class="portrait" id="portrait" onclick="document.getElementById('portfile').click()"><span>Click to add<br>a portrait</span></div>
+      <input type="file" id="portfile" accept="image/*" style="display:none" onchange="loadPortrait(event)">
+      <div class="hint" style="text-align:center;margin-top:5px">click to upload &middot; saved with the character file</div>
+    </div>
+  </section>
+
+  <div class="zone combat"><span>&#9876; Combat</span></div>
+
+  <section class="panel combat" style="margin-top:6px">
+    <h2><span class="mark">&#9876;</span> The Exchange</h2>
+    <div class="statband">
+      <div class="stat" onclick="popup('ap')"><div class="v" id="apMax">0</div><div class="l">Action Points</div><div class="f" id="apF">tier + INT</div></div>
+      <div class="stat" onclick="popup('ba')"><div class="v" id="baReveal">0<small>+d10</small></div><div class="l">BA Reveal</div><div class="f">MP + PER</div></div>
+      <div class="stat" onclick="popup('ba')"><div class="v" id="baConceal">0<small>+d10</small></div><div class="l">BA Conceal</div><div class="f">MP + PER</div></div>
+    </div>
+    <h2 style="font-size:12px;margin:14px 0 0"><span class="mark">&#9876;</span> Active Strike <span style="font-family:'EB Garamond';font-size:10px;letter-spacing:0;text-transform:none;color:var(--bone-dim);font-style:italic">from your active weapon &middot; damage includes Physique &amp; quality</span></h2>
+    <div class="strike">
+      <div class="sc"><div class="v" id="stkAtk">&mdash;<small>+d10</small></div><div class="l">Attack</div></div>
+      <div class="sc"><div class="v" id="stkGl">&mdash;</div><div class="l">Dmg Glancing</div></div>
+      <div class="sc"><div class="v" id="stkCln">&mdash;</div><div class="l">Dmg Clean</div></div>
+      <div class="sc"><div class="v" id="stkFl">&mdash;</div><div class="l">Dmg Flush</div></div>
+      <div class="sc"><div class="v" id="stkPar">&mdash;<small>+d10</small></div><div class="l">Parry</div></div>
+    </div>
+    <div class="hint" id="strikeName" style="margin-top:5px">no active weapon selected</div>
+    <div class="subgrid" style="margin-top:10px">
+      <div>
+        <div class="track"><div class="th"><span>Action Points spent</span><span id="apLabel">0 / 0</span></div><div class="pips" id="apPips"></div></div>
+        <div class="track"><div class="th"><span onclick="popup('mom')" class="reflink">Momentum</span><span>cap <b id="momCap">5</b> &nbsp;<span style="font-size:9px;letter-spacing:.05em">adj</span> <input type="number" class="adj" data-f="momAdj" placeholder="0"></span></div><div class="pips" id="momPips"></div></div>
+      </div>
+      <div>
+        <h2 style="font-size:12px;margin-top:0"><span class="mark">&#9960;</span> Defences <span style="font-family:'EB Garamond';font-size:10px;letter-spacing:0;text-transform:none;color:var(--bone-dim);font-style:italic">+ d10 &middot; click for rule</span></h2>
+        <div id="defences"></div>
+      </div>
+      <div>
+        <h2 style="font-size:12px;margin-top:0"><span class="mark">&#10010;</span> Wounds <span style="font-family:'EB Garamond';font-size:10px;letter-spacing:0;text-transform:none;color:var(--bone-dim);font-style:italic">cap from PHY + adj</span></h2>
+        <div class="woundgrid" id="wounds"></div>
+      </div>
+      <div>
+        <h2 style="font-size:12px;margin-top:0"><span class="mark">&#9873;</span> Conditions</h2>
+        <div class="chips" id="conds"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="mark">&#9874;</span> Weapons</h2>
+    <p class="hint" style="margin-top:-6px">Pick from the <b>Catalogue</b> to autofill stats and skill, or type a custom one. Mark one <b>active</b> (&#9678;) &mdash; its Attack, Damage and Parry feed the Exchange. <b>Qual</b> is a damage modifier for item quality.</p>
+    <div id="weapons" class="wcards"></div>
+    <button class="addbtn" onclick="addWeapon()">+ Add weapon</button>
+  </section>
+
+  <section class="panel">
+    <h2><span class="mark">&#9866;</span> Armour &amp; Equipment</h2>
+    <div class="pickwrap"><label>Armour kit</label><select id="armourPick" onchange="fillArmourKit(this.value)"></select><span class="hint" style="margin:0">autofills DR &amp; Load · editable</span></div>
+    <div class="armourgrid">
+      <div><div class="al">Head</div><input data-f="dr_head" class="c" placeholder="0"></div>
+      <div><div class="al">Torso</div><input data-f="dr_torso" class="c" placeholder="0"></div>
+      <div><div class="al">Wpn Arm</div><input data-f="dr_wpn" class="c" placeholder="0"></div>
+      <div><div class="al">Off Arm</div><input data-f="dr_off" class="c" placeholder="0"></div>
+      <div><div class="al">Legs</div><input data-f="dr_legs" class="c" placeholder="0"></div>
+      <div><div class="al">Load</div><input data-f="load" class="c" placeholder="0"></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label class="fld"><span class="lab">Kit Name</span><input type="text" data-f="kitname"></label>
+      <label class="fld numfld" style="max-width:110px"><span class="lab">Shield Value</span><input type="number" data-f="shield" placeholder="0"></label>
+    </div>
+    <label class="fld" style="margin-top:4px"><span class="lab">Other Equipment</span><textarea data-f="gear"></textarea></label>
+
+    <h2 style="margin-top:16px;font-size:12px"><span class="mark">&#5792;</span> Runic Items
+      <span style="margin-left:auto;font-family:'EB Garamond';font-size:11px;text-transform:none;letter-spacing:0;color:var(--bone-dim);display:inline-flex;gap:6px;align-items:center">possessed <span class="sw" id="runicSw" onclick="toggleRunic()"></span></span></h2>
+    <div id="runicWrap" style="display:none">
+      <p class="hint" style="margin-top:-6px">Inscribed objects of Runic Lore. Name the item and enter whatever values it carries.</p>
+      <div id="runics" class="runiclist"></div>
+      <button class="addbtn" onclick="addRunic()">+ Add runic item</button>
+    </div>
+  </section>
+
+  <section class="panel combat">
+    <div class="active-mods" id="activeMods"><div class="amh">Active conditional modifiers (from your Gifts &amp; Graces)</div><div class="none">none switched on</div></div>
+    <h2 style="margin-top:14px"><span class="mark">&#9737;</span> Combat Reference <span style="font-family:'EB Garamond';font-size:11px;letter-spacing:0;text-transform:none;color:var(--bone-dim);font-style:italic;margin-left:6px">click any entry for the full mechanic</span></h2>
+    <div class="subgrid">
+      <div class="legend"><b>The Three Attacks</b><br><span class="reflink" onclick="popup('ap')">Normal 2 AP</span> &middot; Committed 4 AP (<b>+4 hit, +2 dmg</b>) &middot; Special 6 AP<br><br><b>Weight of Strike</b><br><span class="reflink" onclick="popup('wt_Light')">Light</span> &middot; <span class="reflink" onclick="popup('wt_Balanced')">Balanced</span> &middot; <span class="reflink" onclick="popup('wt_Heavy')">Heavy</span></div>
+      <div class="legend"><b>Resolution</b><br><span class="reflink" onclick="popup('hitq')">Hit quality (margins)</span><br><span class="reflink" onclick="popup('target')">Targeting / locations</span><br><br><b>Defences</b><br><span class="reflink" onclick="popup('def_Parry')">Parry</span> &middot; <span class="reflink" onclick="popup('def_Evade')">Evade</span> &middot; <span class="reflink" onclick="popup('def_Block')">Block</span> &middot; <span class="reflink" onclick="popup('def_Counter')">Counter</span> &middot; <span class="reflink" onclick="popup('def_Covering')">Covering</span></div>
+      <div class="legend"><b>Special Hits</b><br><span class="reflink" onclick="popup('sh_confirm')">Confirming</span><br><span class="reflink" onclick="popup('sh_A')">A Armour Breach</span> &middot; <span class="reflink" onclick="popup('sh_B')">B Deep Strike</span><br><span class="reflink" onclick="popup('sh_C')">C Impale / Knee</span> &middot; <span class="reflink" onclick="popup('sh_D')">D Mark</span><br><span class="reflink" onclick="popup('sh_E')">E Strike to Arm</span></div>
+    </div>
+  </section>
+
+  <div class="zone"><span>Story, Standing &amp; Fate</span></div>
+
+  <section class="panel" style="margin-top:6px">
+    <h2><span class="mark">&#10086;</span> Gifts, Graces &amp; Burdens</h2>
+    <p class="hint" style="margin-top:-6px"><span style="color:#a9d18e">Always-on</span> effects auto-apply; <span style="color:var(--brass-bright)">conditional</span> ones are switches (they surface in the Exchange when active); narrative ones are reminders. The chevron collapses a card to its name.</p>
+    <div class="gtools"><button onclick="collapseAllGGB(true)">&#9656; Collapse all</button><button onclick="collapseAllGGB(false)">&#9662; Expand all</button></div>
+    <div id="ggbList"></div>
+    <button class="addbtn" onclick="addGGB()">+ Add Gift / Grace / Burden</button>
+  </section>
+
+  <section class="panel">
+    <h2><span class="mark">&#9733;</span> Reputation &amp; Standing</h2>
+    <p class="hint" style="margin-top:-6px">How you are known in different circles &mdash; a name and a value (a number, or a word such as Feared, Honoured, Wanted).</p>
+    <div id="reps" class="runiclist"></div>
+    <button class="addbtn" onclick="addRep()">+ Add reputation</button>
+  </section>
+
+  <section class="panel fate">
+    <h2><span class="mark">&#10022;</span> The Sceau du Sort &amp; Fate</h2>
+    <div class="sceau">
+      <label class="fld"><span class="lab">Bound Attribute (permanent)</span><select data-f="sceauattr"><option value="">&mdash; choose &mdash;</option><option>Intellect</option><option>Willpower</option><option>Charisma</option></select></label>
+      <label class="fld"><span class="lab">Unlocked at Tier</span><select data-f="sceautier"><option value="">latent</option><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option></select></label>
+    </div>
+    <div class="row">
+      <label class="fld numfld"><span class="lab">Points du Destin</span><input type="number" data-f="pdd" placeholder="0"></label>
+      <label class="fld numfld"><span class="lab">Skill Adv. Pts</span><input type="number" data-f="sap" placeholder="0"></label>
+    </div>
+    <label class="fld"><span class="lab">Sceau &mdash; State &amp; Modifications</span><textarea data-f="sceaumods" placeholder="Standard: spend 1 Point du Destin at session start; add the bound attribute to one roll per round for the session. Note Tier V/VI modifications here."></textarea></label>
+    <div class="legend" style="margin-top:6px"><b>Standard operation.</b> Spend <span class="e">1 Point du Destin</span> at session start; for that session add your <b>bound attribute</b> to <b>one roll per round</b>. The Point is spent permanently.</div>
+  </section>
+
+  <section class="panel fate">
+    <h2><span class="mark">&#8734;</span> The Chronique Infinie</h2>
+    <div class="row">
+      <label class="fld" style="flex:1"><span class="lab">Path</span><select data-f="path"><option value="">&mdash; choose &mdash;</option><option>Blood</option><option>Flame</option><option>Iron</option><option>Shadow</option><option>Stone</option><option>Song</option><option>Relic</option><option>Heart</option><option>Storm</option><option>Oath</option><option>Root</option></select></label>
+      <label class="fld" style="flex:2"><span class="lab">What this Chronicle is about</span><input type="text" data-f="arctitle"></label>
+    </div>
+    <div class="th" style="font-family:'Cinzel';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin:2px 0 0">Tiers <span style="float:right;font-style:italic;text-transform:none;letter-spacing:0">click a tier to open its notes &middot; &#9876; = confrontation</span></div>
+    <div class="tiers" id="tiers"></div>
+    <div id="tierPanels"></div>
+    <label class="fld" style="margin-top:6px"><span class="lab">Rewards Earned</span><textarea data-f="rewards"></textarea></label>
+    <label class="fld"><span class="lab">The Echo (after resolution)</span><input type="text" data-f="echo"></label>
+  </section>
+
+</div>
+</div>
+
+<p class="footnote">Beneath the Ashen Sky &mdash; Protagonist Sheet. Fate favours the prepared.</p>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target.id==='modal')closeModal()">
+  <div class="box"><span class="x" onclick="closeModal()">&times;</span><h3 id="modalTitle"></h3><p id="modalBody"></p></div>
+</div>
+<script>
+"use strict";
+const GGB=[{"n":"Raised Aboard Ship","k":"G","s":"L","m":[{"t":"+2 Seamanship.","x":"a","v":2,"g":[["skill","Seamanship"]]},{"t":"+1 Carousing and Oratory.","x":"a","v":1,"g":[["skill","Carousing"],["skill","Oratory"]]}],"no":["Tier III Father (Mentor).","+1 Reaction (sailors and maritime folk).","Seamanship bonuses apply on or near water only."]},{"n":"Ancient Mariner","k":"G","s":"L","m":[{"t":"+3 Seamanship (replaces +2).","x":"t","v":3,"g":[["skill","Seamanship"]]},{"t":"+1 Awareness (reading conditions, weather, environment).","x":"t","v":1,"g":[["skill","Awareness"]]},{"t":"+1 Regional Lore (coastal routes and maritime territory).","x":"t","v":1,"g":[["skill","Regional Lore"]]}],"no":["Chapter: Rhyme of the Ancient Mariner — gain a vision or portent of imminent danger, obstacle, or hidden opportunity at sea. Chronicler interpreted.","Chronique Story: Superstitious — invoke your ancestors at sea, gaining Advantage on all related rolls.","Tier III Seafaring Contacts across multiple ports (Allies).","+2 Reaction (sailors and maritime folk).","Ancestor invocation requires being on or near water."]},{"n":"Educated by a Wise Scholar","k":"G","s":"L","m":[{"t":"+2 History, Academia, and Literacy.","x":"a","v":2,"g":[["skill","Academia"],["skill","Literacy"],["skill","History"]]},{"t":"+1 Persuasion (formal argument or providing evidence).","x":"t","v":1,"g":[["skill","Persuasion"]]}],"no":["Chapter: Master of Letters — automatically succeed on one History, Academia, or Literacy check related to hidden truths or complex matters.","Tier III Scholar (Mentor).","Tier II Academic Contacts (Contacts).","+1 Reaction (scholars and scribes).","Master of Letters applies to text-based or archival knowledge only.","Minimum Intellect 2."]},{"n":"Arcane Tutor","k":"G","s":"L","m":[{"t":"+2 Otherworldly Lore and Arcane Ritual.","x":"a","v":2,"g":[["skill","Otherworldly Lore"],["skill","Arcane Ritual"]]},{"t":"+1 History and Academia (retained).","x":"t","v":1,"g":[["skill","Academia"],["skill","History"]]},{"t":"Begin play with one Arcane Crystal.","x":"n","v":null,"g":[]}],"no":["Chronique Story: Mentor's Gift — automatically succeed on one Arcane Ritual check.","Tier IV Magos (Patron).","+2 Reaction (arcane practitioners and scholars).","Arcane Crystal is single-use or requires recharging.","Using mentor's aid draws scrutiny from rival Magi or the Church.","Begin with 1 Corruption Point.","Minimum Intellect 2."]},{"n":"Child of the Alley","k":"G","s":"L","m":[{"t":"+2 Deception and Stealth.","x":"a","v":2,"g":[["skill","Deception"],["skill","Stealth"]]},{"t":"+1 Sleight of Hand and Grapple.","x":"a","v":1,"g":[["skill","Sleight of Hand"],["skill","Grapple"]]},{"t":"+1 defensive strategy rolls in combat (street reflexes).","x":"t","v":1,"g":[]},{"t":"+2 Physique (disease, poison, and wound recovery).","x":"t","v":2,"g":[["attr","PHY"]]}],"no":["Tier II Underworld Contacts (Contacts).","+2 Reaction (underworld figures).","-2 Reaction (general populace).","Urban environment only.","Minimum Dexterity 3. Must possess the Orphaned Burden."]},{"n":"Assassin's Apprentice","k":"G","s":"L","m":[{"t":"+2 Swordsmanship (short blades), Deception, Stealth, and Sleight of Hand (replaces lower bonuses).","x":"t","v":2,"g":[["skill","Sleight of Hand"],["skill","Swordsmanship"],["skill","Deception"],["skill","Stealth"]]},{"t":"Positional bonus for striking from behind is doubled.","x":"n","v":null,"g":[]}],"no":["Chronique Chapter: Shadowed Strike — approach a target completely undetected to land a Special Hit to a chosen location without requiring the defender to roll a natural 1.","Tier IV Assassin (Mentor).","Tier II–III Guild Contacts (Contacts).","+2 Reaction (underworld figures).","-2 Reaction (authorities and guards).","Rivals know your face.","Minimum Dexterity 3."]},{"n":"Bastard","k":"B","s":"L","m":[{"t":"+1 Deception (hiding your status).","x":"t","v":1,"g":[["skill","Deception"]]},{"t":"May choose Feudal Knight as a starting occupation.","x":"n","v":null,"g":[]}],"no":["Tier IV Father (cannot be called upon directly).","-2 Reaction (all — stigma of illegitimacy).","Father will not publicly acknowledge you."]},{"n":"Noble Bastard","k":"G","s":"L","m":[{"t":"+1 Persuasion (commoners).","x":"t","v":1,"g":[["skill","Persuasion"]]},{"t":"Minor Holding: small parcel of land or minor estate. Chronicler interpreted.","x":"n","v":null,"g":[]}],"no":["Chronique Story: Legacy Claim — press a public claim of lineage. On success, gain a lasting political or material advantage.","Tier IV Father (conditional support).","-1 Reaction (highborn circles).","+1 Reaction (commoners).","Legacy Claim failure has lasting consequences.","Minor Holding comes with obligations.","Full title requires legal action or family assent."]},{"n":"Born into Knighthood","k":"G","s":"L","m":[{"t":"+2 Reaction (men-at-arms and mercenaries).","x":"t","v":2,"g":[]},{"t":"+2 Leadership (lesser knights, militia, or levies).","x":"t","v":2,"g":[["skill","Leadership"]]},{"t":"-2 Reaction (old nobility in formal settings).","x":"t","v":-2,"g":[]}],"no":["Chapter: Proving Ground — +1 to all combat checks when facing challengers explicitly contesting your lineage or honour.","Tier III Father (Ally).","Forces under your command gain +2 Morale.","Proving Ground applies only when honour or lineage is explicitly challenged.","-2 Reaction (old nobility) applies in formal court settings only.","Minimum Charisma 2."]},{"n":"Noble Blood","k":"G","s":"L","m":[{"t":"+2 Etiquette, Leadership, and Persuasion (nobles or those who recognise your house).","x":"t","v":2,"g":[["skill","Leadership"],["skill","Persuasion"],["skill","Etiquette"]]},{"t":"+2 all Reaction Tests.","x":"t","v":2,"g":[]}],"no":["Tier IV–III Family Allies (Patrons/Allies, Chronicler interpreted).","Tier II Loyal Retainers (Allies).","Family expects service. Refusal risks loss of support.","Your line is watched by rivals and the crown.","Minimum Charisma 2."]},{"n":"Child of the Greenwood","k":"G","s":"L","m":[{"t":"+2 Archery and Wilderness Survival.","x":"a","v":2,"g":[["skill","Wilderness Survival"],["skill","Archery"]]},{"t":"+1 Regional Lore (homeland).","x":"t","v":1,"g":[["skill","Regional Lore"]]}],"no":["Chapter: Forest's Guile — Advantage on Wilderness Survival, Tracking, and Stealth rolls.","Tier III Father/Warden (Mentor).","+3 Reaction (servants of the Balance).","Forest's Guile requires forest or deep wilds.","Urban environments provide no benefit.","Minimum Willpower 2."]},{"n":"Keepers of the Greenward","k":"G","s":"L","m":[{"t":"+2 Wilderness Survival and Tracking (replaces lower).","x":"t","v":2,"g":[["skill","Wilderness Survival"],["skill","Tracking"]]},{"t":"Forestborn: move through natural terrain without penalty on Wilderness Survival checks; +1 Stealth (forests, swamps, or groves).","x":"n","v":null,"g":[]}],"no":["Chronique Story: Elders' Council — call upon the druidic elders for sanctuary, counsel, or sacred intervention.","Chapter: Greenward Affinity — automatically succeed on a Wilderness Survival, Tracking, or Awareness check in natural environments.","Tier III Druidic Elder (Mentor).","+3 Reaction (druids, rangers, and those who respect the natural order).","-1 Reaction (cities and towns — Sacred Duty).","Natural environments only.","Elders' intervention carries obligations to the Balance.","Minimum Willpower 2."]},{"n":"Hands of the Father","k":"G","s":"L","m":[{"t":"+4 to the specific craft skill your father practised (defined at creation — typically Blacksmith).","x":"t","v":4,"g":[["skill","Blacksmith"]]},{"t":"+2 Reaction (where your father's reputation is known).","x":"t","v":2,"g":[]}],"no":["Chapter: Name Opens Doors — invoke your father's name to automatically gain an audience with an influential person or bypass normal social protocol.","Tier III Father (Master Craftsman, Mentor).","Name Opens Doors works only where your father's reputation is known."]},{"n":"Secret of Steel","k":"G","s":"L","m":[{"t":"+4 Blacksmith beyond the base (if Blacksmith was the craft chosen).","x":"t","v":4,"g":[["skill","Blacksmith"]]},{"t":"+2 Stewardship (evaluating, commissioning, or appraising metalwork, arms, or armour).","x":"t","v":2,"g":[["skill","Stewardship"]]},{"t":"+2 Reaction (artisans, soldiers, and those who prize fine arms).","x":"t","v":2,"g":[]}],"no":["Chronique Story: Heirloom — you possess one master-crafted item wrought by your father. Its recovery if lost is a story arc.","Chapter: Patron's Call — a patron or client of your house seeks your aid or grants access to rare materials.","Tier IV–III Patron Network (Patrons/Allies).","Patron's Call may be a demand, not a gift.","Heirloom loss triggers Burden: Wounded Honour until recovered."]},{"n":"The Heretic Line","k":"G","s":"L","m":[{"t":"+2 Theology (forbidden doctrine and heterodox texts).","x":"t","v":2,"g":[["skill","Theology"]]},{"t":"+1 Deception (concealing beliefs, deflecting clerical questioning).","x":"t","v":1,"g":[["skill","Deception"]]},{"t":"When directly questioned by Church authority, may make a contested Persuasion check to argue your position — failure loses the argument, not a confession.","x":"n","v":null,"g":[]}],"no":["Chapter: Righteous Fury — when acting in direct opposition to Church agents persecuting your bloodline, gain Advantage on all rolls.","+4 Reaction (those who share forbidden beliefs, lapsed clergy, or those who despise the Church's reach).","-4 Reaction (orthodox clergy and devout institutions).","Righteous Fury fires only when Church agents are the direct antagonist.","Discovery endangers everyone who sheltered you."]},{"n":"Remnant of the Heresy","k":"G","s":"L","m":[{"t":"+2 Theology (retained).","x":"t","v":2,"g":[["skill","Theology"]]},{"t":"+2 Persuasion (arguing matters of faith, heresy, or Church doctrine in a formal context).","x":"t","v":2,"g":[["skill","Persuasion"]]},{"t":"+1 Otherworldly Lore.","x":"a","v":1,"g":[["skill","Otherworldly Lore"]]}],"no":["Chronique Story: Legacy of the Proscribed — select one Mystical Gift at creation that does not require its normal prerequisites. Chronicler interpreted.","Chapter: Forbidden Canon — ask the Chronicler one question about Church doctrine, inquisitorial procedure, or the political structure of a religious institution.","+4 Reaction (those who share forbidden beliefs, lapsed clergy, or those who despise the Church's reach).","+2 Reaction (seekers of hidden knowledge and those the Church has also wronged).","-2 Reaction (orthodox clergy — permanent).","Legacy of the Proscribed Mystical Gift carries its own costs.","Inquisitors have long memories."]},{"n":"Monastic Upbringing","k":"G","s":"L","m":[{"t":"+2 Willpower tests (monastic discipline).","x":"t","v":2,"g":[["attr","WIL"]]},{"t":"+1 Theology and Literacy.","x":"a","v":1,"g":[["skill","Literacy"],["skill","Theology"]]},{"t":"Literacy assumed regardless of occupation, in two languages (vernacular and Church Latin or equivalent).","x":"n","v":null,"g":[]}],"no":["Chapter: Monastic Discipline — ignore the first Disadvantage penalty on any Willpower or composure-related test. OR Chapter: Hours of Study — automatically succeed on one Theology, Literacy, or World Lore check.","Tier III Priest Mentor (Mentor).","+2 Reaction (clergy, church officials, and those who respect institutional authority).","Monastic Discipline and Hours of Study are alternatives — one per Chapter.","Minimum Willpower 2."]},{"n":"Raised by Powerful Clergyman","k":"G","s":"L","m":[{"t":"+2 Willpower tests (retained).","x":"t","v":2,"g":[["attr","WIL"]]},{"t":"+2 Persuasion and Etiquette (formal, courtly, or ecclesiastical settings).","x":"t","v":2,"g":[["skill","Persuasion"],["skill","Etiquette"]]},{"t":"+1 Theology and World Lore.","x":"a","v":1,"g":[["skill","Theology"]]}],"no":["Chronique Story: Patron Intervention — major ecclesiastical or political intervention.","Tier IV Prelate (Patron).","+2 Reaction (clergy, retained).","Access to Church administrative networks and records.","-1 Reaction (those who distrust the Church's reach).","Patron will call on you for service. Refusal risks withdrawal of patronage.","Minimum Willpower 2."]},{"n":"Wandering Line","k":"G","s":"L","m":[{"t":"+2 Speak Language and Trading.","x":"a","v":2,"g":[["skill","Speak Language"],["skill","Trading"]]},{"t":"+1 Deception (social masks from a life of passing through).","x":"t","v":1,"g":[["skill","Deception"]]},{"t":"Begin with conversational ability in two additional languages (Speak Language SCL 1).","x":"n","v":null,"g":[]}],"no":["Chapter: Wayfarer's Knowledge — Advantage on Awareness, Regional Lore, or Wilderness Survival rolls in unfamiliar regions.","+2 Reaction (fellow travellers, merchants, and those who live by the road).","No fixed regional reputation — neither helped nor hindered by local faction standing on arrival.","No estate, property, or home community.","Gifts referencing home region or family contacts do not apply without earning them in play."]},{"n":"House of the Amber Road","k":"G","s":"L","m":[{"t":"+2 World Lore and Trading (replaces lower).","x":"t","v":2,"g":[["skill","Trading"]]},{"t":"+1 Wilderness Survival (overland route knowledge) and Regional Lore.","x":"t","v":1,"g":[["skill","Wilderness Survival"],["skill","Regional Lore"]]}],"no":["Chronique Story: Caravan Network — major resources, transport, or information through family trade contacts.","Chapter: Master of the Routes — automatically succeed on a Wilderness Survival or Regional Lore check to navigate, arrange passage, or detect ambushes on trade routes.","Tier III Caravan Master or Route Agent (Ally).","+2 Reaction (traders, caravaneers, and travellers).","Master of the Routes applies on established trade routes only."]},{"n":"Mercantile Upbringing","k":"G","s":"L","m":[{"t":"+3 Trading.","x":"a","v":3,"g":[["skill","Trading"]]},{"t":"+1 Speak Language, Deception, Persuasion, Literacy, Regional Lore, and World Lore.","x":"a","v":1,"g":[["skill","Speak Language"],["skill","Regional Lore"],["skill","Persuasion"],["skill","Deception"],["skill","Literacy"]]}],"no":["Tier III Father/Guardian (Merchant Patriarch, Mentor).","Tier III Trade Contacts in most major towns (Allies).","+2 Reaction (traders and merchants).","Minimum Intellect 2, Charisma 2."]},{"n":"House of the Silk Wind","k":"G","s":"L","m":[{"t":"+2 World Lore and Trading (replaces lower).","x":"t","v":2,"g":[["skill","Trading"]]},{"t":"Cultural Acumen: treat Speak Language as SCL 2 in two distant languages without formal study.","x":"n","v":null,"g":[]}],"no":["Chronique Story: Eastern Network — exotic goods, foreign intelligence, or diplomatic introduction through distant relatives or trade agents.","Chapter: Exotic Insight — automatically succeed on a World Lore or Trading check relating to foreign customs, rare goods, or commercial intelligence.","Tier III Distant Relative, Trade Agent, or Envoy (Ally).","+2 Reaction (merchants, foreign dignitaries, or travellers from distant lands).","-3 Reaction (locals who distrust foreigners — Outlander drawback).","Outlander penalty applies in insular communities."]},{"n":"Highlander","k":"G","s":"L","m":[{"t":"+2 Endurance Levels (starting).","x":"t","v":2,"g":[]},{"t":"+2 Climbing and Wilderness Survival (mountainous terrain).","x":"t","v":2,"g":[["skill","Wilderness Survival"],["skill","Climbing"]]}],"no":["Chapter: Blood of the Ancestors — +3 Willpower tests, +1 weapon skill checks, and ignore up to 2 Endurance loss from the next wound received.","+2 Reaction (warriors who respect resilience).","Clan Favour: temporary support or influence from your clan. Chronicler interpreted.","Clan Favour requires highland territory or diaspora."]},{"n":"Blood of the Jarl","k":"G","s":"L","m":[{"t":"+1 Persuasion, Oratory, and Climbing.","x":"a","v":1,"g":[["skill","Persuasion"],["skill","Climbing"],["skill","Oratory"]]},{"t":"+1 Endurance Level.","x":"t","v":1,"g":[]}],"no":["Chronique Story: Father's Name — temporary support from highland clans through your father's reputation.","Chapter: Jarl's Blood — allies gain +2 Persuasion, Oratory, and Wilderness Survival (mountain); allies gain +1 Endurance Level and +1 Morale tests.","Tier III Father/Jarl (Ally).","+2 Reaction (highland clanspeople).","No benefit in civilised lowland settings.","Jarl's Blood requires you to be present and leading.","Father's reputation carries no weight outside highland territory or diaspora."]},{"n":"Child of the Steppes","k":"G","s":"L","m":[{"t":"+2 Horsemanship.","x":"a","v":2,"g":[["skill","Horsemanship"]]},{"t":"+2 Archery (from horseback; Horsemanship ceiling applies, treat as 1 higher when it is the bottleneck).","x":"t","v":2,"g":[["skill","Horsemanship"],["skill","Archery"]]},{"t":"+1 all other weapon skill checks (mounted).","x":"t","v":1,"g":[]},{"t":"+1 Endurance Level.","x":"t","v":1,"g":[]}],"no":["Chapter: Steppe Instinct — Advantage on Wilderness Survival, Tracking, or Awareness rolls in open plains, steppe, or prairie terrain.","Tier II Tribal Contacts among steppe peoples (Contacts).","+2 Reaction (steppe nomads and those who respect mounted martial culture).","Outsider in settled lands — no equivalent benefit.","Archery and weapon bonuses apply only while mounted.","Minimum Horsemanship 2."]},{"n":"Blood of the Khan","k":"G","s":"L","m":[{"t":"+4 Horsemanship (replaces +2).","x":"t","v":4,"g":[["skill","Horsemanship"]]},{"t":"+4 Archery (from horseback; ceiling lift becomes +2 when Horsemanship is the bottleneck).","x":"t","v":4,"g":[["skill","Horsemanship"],["skill","Archery"]]},{"t":"+2 all other weapon skill checks (mounted — replaces +1).","x":"t","v":2,"g":[]},{"t":"+1 Regional Lore (steppe territories).","x":"t","v":1,"g":[["skill","Regional Lore"]]},{"t":"+1 Initiative (mounted).","x":"t","v":1,"g":[]}],"no":["Chronique Story: Father's Name — temporary support from steppe tribes through your father's reputation.","Chapter: Khan's Blood — all mounted allies gain +2 to attack rolls and pass Morale checks automatically.","Tier III Father/Khan (Ally).","+2 Reaction (steppe nomads, retained).","+1 Reaction (soldiers and mercenaries who recognise the steppe martial tradition).","Khan's Blood requires you to be mounted and visible.","Father's reputation carries no weight outside steppe territory or diaspora.","Minimum Horsemanship 2."]},{"n":"Ambitious Family","k":"G","s":"L","m":[{"t":"Starting wealth: 100 Marks.","x":"n","v":null,"g":[]},{"t":"+2 all Reaction Tests (status).","x":"t","v":2,"g":[]}],"no":["Chronique Story: Family Intervention — the house mobilises resources, troops, or political capital.","Chapter: Political Leverage — call on family influence to secure temporary support or sway a political decision.","Tier IV–III Patrons (Chronicler interpreted).","Tier III One Loyal Retainer (Ally).","Tier IV Arranged Marriage Spouse or Spouse's Family (political anchor).","Failure to serve the house's interests risks withdrawal of support or active hostility.","The arranged marriage is a narrative anchor."]},{"n":"Renowned Family","k":"G","s":"L","m":[{"t":"Begin with 300 Marks.","x":"n","v":null,"g":[]},{"t":"+2 all Reaction Tests.","x":"t","v":2,"g":[]}],"no":["Chronique Story: Foremost House — the family mobilises its full resources: military, political, or economic intervention. Rivals always watching — Chronicler may introduce rival house opposition at any scale.","Chapter: Family Secrets — leverage family influence to obtain privileged information or summon a favoured ally.","Tier IV–II Contacts within noble, mercantile, and ecclesiastical circles.","Tier IV Two Named Allies of Note (Allies).","Branches of your kin in multiple sectors.","Rivals know your name before you know theirs.","The family will call on you."]},{"n":"Raised in Royal Court","k":"G","s":"L","m":[{"t":"+2 Etiquette, Oratory, Heraldry, and Stewardship.","x":"a","v":2,"g":[["skill","Stewardship"],["skill","Etiquette"],["skill","Heraldry"],["skill","Oratory"]]},{"t":"-2 all other non-Martial skill groups (unfamiliarity with the world outside court).","x":"t","v":-2,"g":[]}],"no":["Chronique Story: Royal Favour — call upon court connections for a major favour.","Chapter: Courtly Burden — Chronicler may require attendance at a duty, public appearance, or court ritual. Failure leads to social or political consequences.","Tier II–III Court Contacts (courtiers, clerks, minor nobles).","+3 Reaction (peers of similar rank).","Courtly Burden is not optional.","-2 to non-Courtly, non-Martial skill groups is permanent.","Minimum Charisma 2. Maximum Willpower 2, Physique 2 at time of selection."]},{"n":"Political Family","k":"G","s":"L","m":[{"t":"Begin with 100 Marks.","x":"n","v":null,"g":[]},{"t":"+3 all Reaction Tests (status and influence).","x":"t","v":3,"g":[]}],"no":["Chronique Story: Marriage of Power — the arranged marriage creates an immediate political alliance.","Chapter: Political Leverage — call on family influence to sway a political decision, secure official favour, or postpone a sanction.","Tier V Patrician (leading figure of your house, Patron).","Tier IV Arranged Marriage Spouse (Ally or complication).","Allies and rivals alike play the long game.","Household expects loyalty to the alliance. Refusal risks withdrawal of support.","Minimum Charisma 2. Maximum Willpower 2, Physique 2 at time of selection."]},{"n":"Family Heirloom","k":"G","s":"L","m":[{"t":"One item of power (Relic or Item of Lore) passed down through generations. Nature defined with Chronicler at creation.","x":"n","v":null,"g":[]}],"no":["Chronique Story: Heirloom's Legacy — the heirloom may hold secrets, memories, or dormant powers unlockable through story actions. If lost or stolen, immediately gain Burden: Wounded Honour until recovered.","+1 Reaction (those who recognise the heirloom's significance).","Others covet it — theft or challenge is a recurring risk."]},{"n":"Bane","k":"G","s":"L","m":[{"t":"+2 all Reaction Tests (renown).","x":"t","v":2,"g":[]},{"t":"+2 Physique and Willpower tests to resist effects directly tied to that creature type (breath weapons, fear auras, venom, lineage magic).","x":"t","v":2,"g":[["attr","PHY"],["attr","WIL"]]},{"t":"+2 Stealth (night or low light).","x":"t","v":2,"g":[["skill","Stealth"]]},{"t":"+1 Awareness (darkness).","x":"t","v":1,"g":[["skill","Awareness"]]}],"no":["Chronique Story: Kin's Reckoning — Chronicler introduces a concrete lead tying you to a living member of the slain beast's kin.","Chapter: Slayer's Boon — when facing a creature of the same type your ancestor felled, gain Advantage on all rolls against that creature type. Special Hits ignore armour entirely.","Reputation: doors open among those who honour monster-slayers.","Scented Blood: when you enter the marked territory of the beast or its kin, it instantly senses your presence and focuses vengeance solely on you.","Slayer's Boon applies only to the specific creature type your ancestor slew.","Scented Blood is permanent.","Chapter: Lineage's Pull — the Chronicler introduces a complication arising from the blood: an entity that knows your line, a contrary instinct, or a dream that costs rest.","Creatures of the night treat you as diminished kin — initial Reaction is Neutral rather than Hostile.","-2 Reaction (clergy and devout NPCs scrutinising your lineage; -4 if lineage becomes known to a religious authority).","Cannot be taken alongside Sidhe Blood.","You cannot command or control creatures of the night.","The Church will hunt you if your lineage is known."]},{"n":"Child of the Hidden Faith","k":"G","s":"L","m":[{"t":"+2 Deception (maintaining cover, concealing affiliation, managing a double life).","x":"t","v":2,"g":[["skill","Deception"]]},{"t":"+1 Theology (hidden faiths, proscribed doctrine, and secret organisational structures).","x":"t","v":1,"g":[["skill","Theology"]]}],"no":["Chapter: Obligation of Kinship — the cult calls upon you for a task. Refusal requires a Willpower test (TN 14). Failure means partial compliance before you can extract yourself.","Tier II Named Cult Contact (Contact).","Tier I–II Cult Network in multiple locations (Contacts).","If affiliation is discovered: severe social and legal consequences. The cult will protect itself, not you.","The cult is outlawed.","Obligation of Kinship is not optional."]},{"n":"Excellent Armaments","k":"G","s":"L","m":[{"t":"Master-crafted (non-magical) armour of your choice.","x":"n","v":null,"g":[]},{"t":"Two master-crafted (non-magical) weapons of your choice.","x":"n","v":null,"g":[]}],"no":["+1 Reaction (soldiers, knights, and those who respect fine craftsmanship).","Master-crafted gear can be lost, stolen, or damaged.","Quality marks you as someone of means — attracts thieves and rivals."]},{"n":"Fostered Heir","k":"G","s":"L","m":[{"t":"+1 Etiquette and Persuasion.","x":"a","v":1,"g":[["skill","Persuasion"],["skill","Etiquette"]]},{"t":"+1 Horsemanship or Swordsmanship (choose one at creation).","x":"t","v":1,"g":[["skill","Swordsmanship"],["skill","Horsemanship"]]}],"no":["Chronique Story: Bond of Houses — your foster family may intervene in a political or social matter.","Chapter: Foster Family Aid — call upon your foster family for minor support: information, temporary shelter, a small loan, or an introduction.","Tier III Foster Parent (Noble, Ally).","Tier II Foster Siblings (Contacts).","Birth family and foster family have a formal alliance.","Conflicting loyalties between two houses are a recurring pressure.","Must choose another Noble Family as your foster family."]},{"n":"Gamekeeper's Son","k":"G","s":"L","m":[{"t":"+2 Tracking and Feudal Hunting.","x":"a","v":2,"g":[["skill","Feudal Hunting"],["skill","Tracking"]]},{"t":"+1 Wilderness Survival and Stewardship.","x":"a","v":1,"g":[["skill","Wilderness Survival"],["skill","Stewardship"]]}],"no":["Chapter: Secret Association — call upon the lord's child for information, a small favour, or access to the estate.","Estate Knowledge — you know the layout, staff, and routines of one noble estate (passive).","Tier III Lord's Child (undeclared Contact — dangerous if exposed).","Tier II Father/Gamekeeper (Contact).","-2 Reaction if the association becomes known.","If Secret Association is discovered, consequences range from banishment to execution. Chronicler interpreted.","Estate Knowledge applies only to the specific estate where you grew up."]},{"n":"Sworn Brotherhood / Sworn Sisterhood","k":"G","s":"L","m":[{"t":"+2 Willpower tests (acting in direct defence of your sworn kin).","x":"t","v":2,"g":[["attr","WIL"]]}],"no":["Chapter: Call Upon Sworn Kin — your kin provides aid: information, assistance, intervention, or their presence at a moment that matters. Chronicler interpreted.","Chapter: Reciprocal Obligation — your sworn kin may call upon you. Refusing without compelling cause risks the bond.","Tier III Sworn Kin (deep and unconditional loyalty).","+1 Reaction (contexts where your bond is known and respected).","If sworn kin dies: permanent -1 Reaction for remainder of story (grief); +2 attack rolls against the cause of their death for the same period.","Reciprocal Obligation is mandatory.","The bond can be broken by betrayal or neglect."]},{"n":"Thornmother Line / Oak-Father Line","k":"G","s":"L","m":[{"t":"+2 Wilderness Survival and Theology (Old Faith doctrine and seasonal rites).","x":"t","v":2,"g":[["skill","Wilderness Survival"],["skill","Theology"]]},{"t":"+1 Herbalism.","x":"a","v":1,"g":[["skill","Herbalism"]]},{"t":"Wilderness Survival and Tracking gain Advantage as baseline in natural environments.","x":"n","v":null,"g":[]},{"t":"Token is legible to cultists serving the same entity and to supernatural beings of sufficient age.","x":"n","v":null,"g":[]},{"t":"+1 Persuasion and Etiquette (entities or organisations affiliated with the Ancient One).","x":"t","v":1,"g":[["skill","Persuasion"],["skill","Etiquette"]]},{"t":"Initial Reaction from such figures is Cautious rather than Hostile.","x":"n","v":null,"g":[]}],"no":["Chronique Story: Oak's Witness — the land grants a vision or omen tied to a sacred grove, standing stone, or spirit of the Old Faith. Chronicler interpreted.","Chapter: Thorn's Memory — ask the Chronicler one question about the natural environment: what lives here, what has passed through, what the land is reacting to.","Tier III Hedge-Priest, Wise Woman, or Grove-Keeper (Ally — specific person, not a network).","+2 Reaction (followers of the Old Faith — hedge witches, druids, wildfolk, those who distrust the Church).","-2 Reaction (orthodox clergy).","Urban, heavily cultivated, or consecrated Church land provides no benefit from the Wilderness Advantage.","The Church has hunted the Old Faith for generations.","Chronique Story: Ancient Intervention — the Ancient One may provide aid. Chronicler interpreted.","Chronique Story: Periodic Obligation — the Ancient One makes demands. Refusal carries narrative consequences.","Chapter: Fragmentary Knowledge — ask whether a location or object is connected to the compact's sphere. Chronicler interpreted.","Tier II–III Cultist Network (Contacts).","Begin with fragmentary knowledge of the Ancient One's history, preferences, and the original compact terms.","The token cannot be removed or hidden without consequence.","The compact is multigenerational — you cannot simply walk away."]},{"n":"House of Shadows","k":"G","s":"L","m":[{"t":"+2 Stealth, Deception, and Awareness.","x":"a","v":2,"g":[["skill","Awareness"],["skill","Deception"],["skill","Stealth"]]},{"t":"+1 Lockpicking (trap detection and mechanical hazard recognition).","x":"t","v":1,"g":[["skill","Lockpicking"]]},{"t":"+2 Awareness (supernatural, liminal spaces, or Sidhe-touched locations).","x":"t","v":2,"g":[["skill","Awareness"]]},{"t":"+1 Persuasion and Etiquette (Sidhe or fae-aligned entities).","x":"t","v":1,"g":[["skill","Persuasion"],["skill","Etiquette"]]}],"no":["Chronique Story: Shadow Network — call upon family spy network for intelligence, sabotage, or cover.","Chapter: Silent Advantage — automatically succeed on a Stealth, Deception, or Awareness check related to espionage, infiltration, or secret knowledge.","Tier III Spy, Informant, or Thief (Ally).","+2 Reaction (thieves, spies, and informants).","-2 Reaction (guards, magistrates, and authorities — automatically treated as suspect).","Silent Advantage applies to espionage, infiltration, or secret knowledge only.","The shadow network is loyal to the family, not to you personally.","Chronique Story: Fae World Acknowledgement — the fae world may intervene on your behalf or demand your attention. Chronicler interpreted.","Chapter: Fae Perception — ask the Chronicler what the Sidhe perceive in a given location or about a specific object.","-2 Reaction (strangers who are not fae-aligned — the sense of otherness precedes you).","Iron Vulnerability: sustained contact with iron causes the NUMB condition. Prolonged restraint in iron manacles or full iron armour escalates to full Iron Allergy Burden effects.","Cannot be taken alongside Blood Drinker's Lineage.","Iron Vulnerability is permanent.","The fae world acknowledges you — this includes obligations.","The wrongness others sense will close doors."]},{"n":"Tutored by Renowned Master","k":"G","s":"L","m":[{"t":"+2 to two specific named skills appropriate to your mentor's instruction (defined with Chronicler at creation — skill group bonuses not permitted).","x":"t","v":2,"g":[]}],"no":["Chronique Story: Master's Intervention — your master intervenes directly: a letter of introduction, a rare resource, or personal appearance.","Chapter: Mentor's Insight — your master provides hidden knowledge, subtle technique, or advice.","Tier V Renowned Master (Patron — player-designed, Chronicler approved).","+1 Reaction (circles familiar with your master's name).","The master's field defines the scope of their aid.","The master is renowned — their enemies may become your enemies."]},{"n":"Ward of a Great House","k":"G","s":"L","m":[{"t":"+2 Etiquette and Persuasion (nobles or officials).","x":"t","v":2,"g":[["skill","Persuasion"],["skill","Etiquette"]]}],"no":["Chronique Story: Hidden Past — your true lineage is generated secretly by the Chronicler. Clues, revelations, or betrayals emerge as the campaign unfolds. Revelation applies mechanical and social fallout. Chronicler interpreted.","Chapter: Patronage — your patron intercedes: shelter, an influential contact, forged records, or a temporary resource.","Tier V Greater Noble/Knight or Courtier (Patron).","Each time your patron aids you, they may call in a favour. Refusal risks withdrawal of protection or hostility.","Patronage is conditional on continued loyalty.","Requires Orphaned or another Lineage entry representing your adoptive background."]},{"n":"Accursed Lineage","k":"B","s":"L","m":[{"t":"+1 Willpower tests to resist supernatural compulsion, possession, or fear.","x":"a","v":1,"g":[["attr","WIL"]]}],"no":["Chronique Chapter: Curse Manifestation — the Chronicler triggers a curse effect at any dramatically significant moment: hallucinations, uncontrolled behaviour, terrible news from home, or a notable NPC reaction to your family name.","-2 Reaction (superstitious NPCs).","Those who know of the curse avoid your family.","The curse cannot be removed by normal means."]},{"n":"Black Sheep of the Family","k":"B","s":"L","m":[{"t":"-3 Etiquette, Persuasion, and Oratory (former family and their allies).","x":"t","v":-3,"g":[["skill","Persuasion"],["skill","Etiquette"],["skill","Oratory"]]},{"t":"-3 all Reaction Tests (stigma of disownment).","x":"t","v":-3,"g":[]}],"no":["Chronique Story: Turncoat's Coin — covert help from your father's enemies, always at a price or future obligation. Chronicler interpreted.","Chapter: Revenge's Edge — when you act to damage your family's interests, gain Advantage on all rolls.","Tier IV Father (enemy).","Tier IV Rival of your Father (Patron — not friendship).","Family name is barred to you.","Your father's enemies are using you."]},{"n":"Debt of Blood","k":"B","s":"L","m":[{"t":"+2 Reaction (the creditor and those loyal to them).","x":"t","v":2,"g":[]}],"no":["Chronique Story: Debt Resolved — if you discharge the debt through exceptional service or sacrifice the creditor accepts as sufficient, this Burden is removed and replaced with a Gift of equivalent weight.","Story: Creditor's Invocation — the creditor invokes the debt, calling on you for significant service. Refusal carries narrative consequences.","Tier IV Creditor (house, order, or individual — defined at creation with Chronicler).","The relationship is defined by what is owed, not affection.","You cannot hide from the creditor."]},{"n":"Fallen Clergy","k":"B","s":"L","m":[{"t":"+2 Theology and History.","x":"a","v":2,"g":[["skill","Theology"],["skill","History"]]},{"t":"Literacy assumed regardless of occupation.","x":"n","v":null,"g":[]}],"no":["Chronique Chapter: Theological Insight — ask the Chronicler one question about a religious institution, figure, or doctrinal matter and receive an honest and specific answer.","Tier III Parent (former cleric, Contact).","+2 Reaction (heretics, lapsed believers, and those estranged from the Church).","-2 Reaction (orthodox clergy).","Theological Insight applies to religious matters only.","The Church does not quite forgive — this will close doors."]},{"n":"Lost House","k":"B","s":"L","m":[{"t":"+2 Willpower tests (breaking is not an option).","x":"t","v":2,"g":[["attr","WIL"]]},{"t":"+1 Reaction (those old enough to remember what your name meant).","x":"t","v":1,"g":[]}],"no":["Chronique Story: Reclamation Arc — pursue active recovery of your family's standing. Chronicler tracks meaningful progress and applies narrative and mechanical rewards.","Chapter: Last of the Line — invoke the full weight of your name in a moment of genuine need. +3 all social skill checks. Chronicler interpreted.","-1 Reaction (those who see only what your name is now).","No lands, no retainers, no family wealth.","Reclamation Arc requires active player pursuit.","No material inheritance."]},{"n":"Orphaned","k":"B","s":"L","m":[{"t":"+1 Awareness and History (pursuing clues to your family or origins).","x":"t","v":1,"g":[["skill","Awareness"],["skill","History"]]}],"no":["Chronique Story: Secret Origin — your birth family's background is generated secretly by the Chronicler. Revelation is a major story moment.","Chapter: True Lineage — the Chronicler delivers a concrete clue (name, token, witness, or document).","Tier III Adoptive Patron (guardian, patron, or steward, Contact — absent in Foundling variant).","-1 Reaction (mystery of your origins invites suspicion).","Rootless: cannot use family-based boons, heraldry privileges, or inherited contacts until true origins are discovered.","Secret Origin may be shameful, dangerous, or both.","Must choose another Lineage entry to represent your adoptive background (waived for Foundling variant)."]},{"n":"Before the World Wakes","k":"G","s":"E","m":[{"t":"You require only half the normal rest period to recover Bruise levels.","x":"n","v":null,"g":[]},{"t":"You are never surprised during your own watch.","x":"n","v":null,"g":[]},{"t":"When the party is ambushed from sleep, you act in the first initiative order rather than suffering the surprised penalty.","x":"n","v":null,"g":[]}],"no":[]},{"n":"The Second Breath","k":"G","s":"E","m":[{"t":"+4 Endurance Limit (permanent).","x":"t","v":4,"g":[]},{"t":"When you would suffer Endurance penalties from reaching half your remaining Endurance, you may ignore those penalties for 2 full rounds.","x":"n","v":null,"g":[]},{"t":"+2 Physique (exhaustion, forced marching, and sustained extreme physical demand).","x":"t","v":2,"g":[["attr","PHY"]]}],"no":[]},{"n":"Cast from Harder Stuff","k":"G","s":"E","m":[{"t":"Advantage on all tests to resist ingested poison, tainted food, or contaminated water.","x":"n","v":null,"g":[]},{"t":"May eat spoiled or unsafe food without automatic negative effects — roll applies but TN is reduced by 4.","x":"n","v":null,"g":[]},{"t":"+2 Physique (illness contracted through contamination, exposure, or contagion).","x":"t","v":2,"g":[["attr","PHY"]]},{"t":"Flesh tier wounds may be left untreated for 48 hours without a deterioration check.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Unbreakable Resistance","k":"G","s":"E","m":[{"t":"Immune to ongoing effects of non-magical ingested poisons. An immediate first-round effect may still apply for very potent substances. Chronicler interpreted.","x":"n","v":null,"g":[]},{"t":"Contact and blade-delivered poisons affect you at half potency — all resistance TN reduced by 4.","x":"n","v":null,"g":[]},{"t":"+4 Physique (illness, disease, wound infection, and sepsis — replaces +2).","x":"t","v":4,"g":[["attr","PHY"]]},{"t":"Flesh tier wounds and above never deteriorate from lack of treatment alone.","x":"n","v":null,"g":[]},{"t":"When you fail a Physique test to resist a poison or disease effect, you may reroll and take the better result.","x":"n","v":null,"g":[]}],"no":[]},{"n":"The Body Remembers","k":"G","s":"E","m":[{"t":"+2 Climbing, Swimming, and all athletic physical tests not covered by a weapon or combat skill.","x":"a","v":2,"g":[["skill","Climbing"],["skill","Swimming"]]},{"t":"No Disadvantage from difficult terrain when running, climbing, or swimming unless the terrain is impassable.","x":"n","v":null,"g":[]},{"t":"Reroll a failed Climbing or Swimming check and keep the better result.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Blade Dancer","k":"G","s":"E","m":[{"t":"+1 Momentum at the start of any round in which your declared strategy explicitly incorporates movement as its central element. Chronicler interpreted.","x":"t","v":1,"g":[["momentum",null]]},{"t":"+1 all attack rolls when engaged with two or more opponents simultaneously.","x":"t","v":1,"g":[]},{"t":"When your declared strategy incorporates movement, you may move within the engagement zone without triggering free strikes from opponents you pass.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Hard to Fell","k":"G","s":"E","m":[{"t":"Dying timer extended by +2 rounds (in addition to Physique score).","x":"n","v":null,"g":[]},{"t":"When you would be reduced to the Dying state, make a Physique test (TN 12). On success, remain at 1 remaining Wound level in the Critical tier. All wound effects still apply.","x":"n","v":null,"g":[]},{"t":"+2 Physique (poison, disease, and debilitating effects).","x":"t","v":2,"g":[["attr","PHY"]]}],"no":[]},{"n":"Coeur de Lion","k":"G","s":"E","m":[{"t":"When you receive a wound result that would apply an immediate condition — STAG, STUN, KNEE, or Dying from a Torso or Limb location — you may ignore that immediate condition entirely. The wound fills normally. Cannot be used against Head or Neck wounds triggering Instant Death.","x":"n","v":null,"g":[]},{"t":"Flesh and Telling wound tier capacities each increase by 2 permanently.","x":"n","v":null,"g":[]},{"t":"Suspend all Endurance penalties for one full combat round. You act at full capacity. Penalties return at the round's end.","x":"n","v":null,"g":[]},{"t":"Allies within your Macro Zone who witness you fighting through wounds gain Advantage on all Morale checks for the remainder of that combat.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Natural Intuition","k":"G","s":"E","m":[{"t":"You may never be flanked without warning. When an opponent attempts to flank you, make a Perception test (TN 10). On success you are aware before it executes and do not suffer Disadvantage.","x":"n","v":null,"g":[]},{"t":"+2 Awareness (ambushes, hidden sentries, or surveillance before engaging a location).","x":"t","v":2,"g":[["skill","Awareness"]]}],"no":["Chapter: Instinct — declare you acted on instinct before a trap, ambush, or sudden environmental event, gaining one additional action at the start of that encounter."]},{"n":"The Deep Warning","k":"G","s":"E","m":[{"t":"+2 Awareness (ambushes, traps, and hidden dangers — retained).","x":"t","v":2,"g":[["skill","Awareness"]]},{"t":"In situations where surprise would normally remove your first-round action entirely, you retain a single defensive action — Defensive Posture only — before normal initiative begins.","x":"n","v":null,"g":[]}],"no":["Story: Retroactive Precaution — declare you sensed something was wrong before entering a scene currently in progress, explaining a precaution already taken within narrative reason. Chronicler interpreted."]},{"n":"Voice of the People","k":"G","s":"E","m":[{"t":"+2 Persuasion and Oratory (commoners, labourers, rural workers, and the urban poor).","x":"t","v":2,"g":[["skill","Persuasion"],["skill","Oratory"]]},{"t":"+1 information-gathering checks in settlements where common folk are the primary population.","x":"t","v":1,"g":[]},{"t":"Initial Reaction from low-station NPCs begins at Cautious rather than Neutral.","x":"n","v":null,"g":[]},{"t":"-1 Persuasion and Oratory (formal noble or courtly contexts).","x":"t","v":-1,"g":[["skill","Persuasion"],["skill","Oratory"]]}],"no":["Minimum Charisma 2."]},{"n":"The Crowd Bends","k":"G","s":"E","m":[{"t":"+3 Oratory (replaces +2 from Voice of the People).","x":"t","v":3,"g":[["skill","Oratory"]]},{"t":"When addressing a crowd of ten or more, a Significant Success on an Oratory check moves the entire crowd one attitude step in your desired direction.","x":"n","v":null,"g":[]},{"t":"Delivering a speech grants all listening allies Advantage on their next Morale check.","x":"n","v":null,"g":[]},{"t":"Your reputation as a speaker of the people grants access to gatherings and informal councils otherwise closed to outsiders.","x":"n","v":null,"g":[]}],"no":["Minimum Charisma 2."]},{"n":"Gut Feeling","k":"G","s":"E","m":[{"t":"+2 Awareness (deception, hidden intent, or concealed emotion in direct face-to-face interaction — not written communications).","x":"t","v":2,"g":[["skill","Awareness"]]},{"t":"+1 BA checks in the first round of combat against an opponent you have spent at least one minute observing.","x":"t","v":1,"g":[]},{"t":"When someone is actively deceiving you in a social encounter, you gain a free Awareness check (no action cost) to detect it.","x":"n","v":null,"g":[]}],"no":["Chapter: Hunch — declare a hunch about a person, situation, or place. Chronicler interpreted."]},{"n":"Reader of Men","k":"G","s":"E","m":[{"t":"+2 all BA checks in combat.","x":"t","v":2,"g":[]},{"t":"When you achieve a Clear or Deep read on a BA check, you may choose to apply a Counter Match even if your selected defensive strategy does not list the incoming attack type as a counter. Chronicler interpreted.","x":"n","v":null,"g":[]},{"t":"+2 Awareness (deception or hidden intent in social situations — in addition to Gut Feeling base).","x":"t","v":2,"g":[["skill","Awareness"]]}],"no":[]},{"n":"Avid Learner","k":"G","s":"E","m":[{"t":"+1 OSG modifier in the Knowledge skill group (floor at +1, not overriding a higher existing value).","x":"t","v":1,"g":[]},{"t":"One Knowledge skill per story chapter designated as your current focus gains +2 to all checks for that chapter.","x":"n","v":null,"g":[]},{"t":"Training and study time for any Knowledge-group skill reduced by 25%.","x":"n","v":null,"g":[]}],"no":["Minimum Intellect 2."]},{"n":"Archivist","k":"G","s":"E","m":[{"t":"Automatically recall anything you have personally witnessed, read, or been told with accurate recall.","x":"n","v":null,"g":[]},{"t":"+3 History and Regional Lore (information personally encountered during play).","x":"t","v":3,"g":[["skill","Regional Lore"],["skill","History"]]},{"t":"+2 Literacy-based checks involving deciphering, cross-referencing, or comparing texts.","x":"a","v":2,"g":[["skill","Literacy"]]},{"t":"When someone attempts to deceive you about events you personally witnessed, you automatically detect the discrepancy — no Awareness check required.","x":"n","v":null,"g":[]},{"t":"+1 all Intellect-based skill checks.","x":"a","v":1,"g":[["attr","INT"]]}],"no":["Minimum Intellect 2."]},{"n":"The Velvet Step","k":"G","s":"E","m":[{"t":"+3 Stealth (movement).","x":"t","v":3,"g":[["skill","Stealth"]]},{"t":"You never trigger pressure-sensitive traps through normal movement unless the mechanism is designed to detect the lightest possible tread.","x":"n","v":null,"g":[]},{"t":"Advantage on Stealth checks made at night in urban environments.","x":"n","v":null,"g":[]}],"no":["Minimum Dexterity 3."]},{"n":"The Dark's Companion","k":"G","s":"E","m":[{"t":"In darkness or low light, no Disadvantage on Stealth, Awareness, or movement-based checks.","x":"n","v":null,"g":[]},{"t":"+2 all attack rolls made from concealment against opponents who cannot see you clearly.","x":"t","v":2,"g":[]},{"t":"Darkness-based fear effects have no mechanical impact on you.","x":"n","v":null,"g":[]}],"no":["Minimum Dexterity 3."]},{"n":"Natural Horseman","k":"G","s":"E","m":[{"t":"+2 Horsemanship (all contexts — riding, combat, managing the horse under stress).","x":"t","v":2,"g":[["skill","Horsemanship"]]},{"t":"May use Archery from horseback without the standard penalty. The lower of Horsemanship and Archery still sets the ceiling; the penalty for shooting from a moving mount does not apply.","x":"n","v":null,"g":[]},{"t":"When Horsemanship sets the ceiling on a weapon-from-horseback check, treat effective Horsemanship as 1 higher for that calculation.","x":"n","v":null,"g":[]}],"no":["Minimum Horsemanship 2."]},{"n":"Born in the Saddle","k":"G","s":"E","m":[{"t":"+4 Horsemanship (all contexts — replaces +2).","x":"t","v":4,"g":[["skill","Horsemanship"]]},{"t":"May use Archery from horseback without penalty (retained). When Horsemanship sets the ceiling on any weapon-from-horseback check, treat effective Horsemanship as 2 higher (replaces +1).","x":"n","v":null,"g":[]},{"t":"Your mount acts as an extension of your intent in combat — you never spend an action on reins management.","x":"n","v":null,"g":[]},{"t":"You and your mount act simultaneously — you attack and your mount attacks in the same exchange, each resolving independently. Your mount's attack resolves as a Grapple-equivalent strike at your Physique modifier.","x":"n","v":null,"g":[]},{"t":"If your horse is slain in combat, you may make a free emergency dismount as an immediate action with no action cost and no Disadvantage from the fall, landing in any adjacent measure.","x":"n","v":null,"g":[]}],"no":["Minimum Horsemanship 2."]},{"n":"Handsome Appearance","k":"G","s":"E","m":[{"t":"+1 Etiquette and Persuasion.","x":"a","v":1,"g":[["skill","Persuasion"],["skill","Etiquette"]]},{"t":"+3 Reaction (those who respond to physical appearance — Chronicler interpreted by context and NPC disposition).","x":"t","v":3,"g":[]},{"t":"At tournaments and social events, your appearance functions as a social asset — gifts, favours, and alliance overtures may come without solicitation.","x":"n","v":null,"g":[]},{"t":"+1 Reputation modifier. Anonymity is harder.","x":"t","v":1,"g":[]}],"no":["Minimum Charisma 2."]},{"n":"Rakish Good Looks","k":"G","s":"E","m":[{"t":"+3 Etiquette and Persuasion (replaces +1).","x":"t","v":3,"g":[["skill","Persuasion"],["skill","Etiquette"]]},{"t":"+6 Reaction (those who respond to physical appearance — replaces +3).","x":"t","v":6,"g":[]},{"t":"All participants not already hostile must succeed on a Willpower test (TN 10) or find themselves unable to take a directly hostile social action against you for the remainder of the scene. They may oppose, deflect, or withdraw — they cannot attack socially.","x":"n","v":null,"g":[]},{"t":"You always possess at least one current admirer and one scorned admirer, both connected to figures of genuine power. Chronicler interpreted.","x":"n","v":null,"g":[]},{"t":"+3 Reputation modifier (replaces +1). Disguise checks to conceal your identity require a Complete Success (TN 20).","x":"t","v":3,"g":[]}],"no":["Minimum Charisma 2."]},{"n":"Natural Leader","k":"G","s":"E","m":[{"t":"+2 Leadership and Oratory.","x":"a","v":2,"g":[["skill","Leadership"],["skill","Oratory"]]},{"t":"+2 all Reaction Tests (commanding bearing).","x":"t","v":2,"g":[]},{"t":"Allies you are actively leading gain +2 Morale checks.","x":"n","v":null,"g":[]}],"no":["Minimum Charisma 3."]},{"n":"Heroic Bearing","k":"G","s":"E","m":[{"t":"+4 Leadership and Oratory (replaces +2).","x":"t","v":4,"g":[["skill","Leadership"],["skill","Oratory"]]},{"t":"+4 all Reaction Tests (replaces +2).","x":"t","v":4,"g":[]},{"t":"Allies who can see you in combat gain +4 Morale checks (replaces +2).","x":"n","v":null,"g":[]},{"t":"Your presence alone ends a Broken morale result in an allied unit within your Macro Zone — it becomes Wavering immediately, without a check.","x":"n","v":null,"g":[]},{"t":"Named NPCs who have witnessed you lead in a moment of genuine crisis will not act against you without first making a Willpower test (TN 12).","x":"n","v":null,"g":[]}],"no":["Minimum Charisma 4. Must possess Natural Leader."]},{"n":"Defensive Edge","k":"G","s":"E","m":[{"t":"+1 all defensive strategy rolls when you have successfully read the incoming attack (partial read or better from a BA check).","x":"t","v":1,"g":[]},{"t":"When you fully succeed on a defence, you gain +2 Momentum rather than +1.","x":"n","v":null,"g":[]},{"t":"When you succeed on a defence by 5 or more above the attacker's roll, you may immediately declare a counter-attack using an unused offensive strategy from your current bundle, firing before normal initiative order.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Defensive Master","k":"G","s":"E","m":[{"t":"+2 all defensive strategy rolls regardless of BA check result (replaces conditional +1).","x":"t","v":2,"g":[]},{"t":"When you fully succeed on a defence, your opponent loses 1 Momentum in addition to you gaining +2 Momentum.","x":"n","v":null,"g":[]},{"t":"Fight an entire round in pure defence — declaring no offensive strategies — and for that round every opponent who attempts to attack you must beat your defensive TN by 5 or more to land any result. Glancing hit is not available to them.","x":"n","v":null,"g":[]},{"t":"Your Defensive Posture roll uses Martial Prowess SCL + Dexterity with the standard -3 penalty removed.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Silver Tongued","k":"G","s":"E","m":[{"t":"+3 Deception, Oratory, Persuasion, Leadership, and Etiquette.","x":"a","v":3,"g":[["skill","Leadership"],["skill","Persuasion"],["skill","Deception"],["skill","Etiquette"],["skill","Oratory"]]},{"t":"+2 to one additional Communication group skill chosen at creation (Performance or Carousing).","x":"t","v":2,"g":[["skill","Performance"],["skill","Carousing"]]},{"t":"+2 all Reaction Tests (social situations where you are persuading, charming, or influencing).","x":"t","v":2,"g":[]},{"t":"Formal agreement negotiation time reduced by half.","x":"n","v":null,"g":[]}],"no":["Minimum Charisma 4."]},{"n":"Veil of Charm","k":"G","s":"E","m":[{"t":"+3 Persuasion and Deception (talking down hostile or suspicious individuals — stacks with Silver Tongued for +6 in these contexts).","x":"t","v":3,"g":[["skill","Persuasion"],["skill","Deception"]]},{"t":"+3 Reaction (individuals who begin as hostile — replaces general +2 in hostile contexts).","x":"t","v":3,"g":[]},{"t":"Force a hostile individual to make a Willpower test (TN 4 + your Charisma modifier). On failure they act as friendly for the current scene. Cannot affect individuals with a specific personal grievance against you or those under supernatural compulsion.","x":"n","v":null,"g":[]}],"no":["Minimum Charisma 4."]},{"n":"Hulking Frame","k":"G","s":"E","m":[{"t":"+2 Physique (raw strength — breaking, lifting, forcing, wrestling).","x":"t","v":2,"g":[["attr","PHY"]]},{"t":"+2 Leadership and Persuasion (mechanism is fear, threat, or physical presence).","x":"t","v":2,"g":[["skill","Leadership"],["skill","Persuasion"]]},{"t":"May wield two-handed weapons in one hand without penalty.","x":"n","v":null,"g":[]},{"t":"Grapple strikes inflict +1 additional Bruise level on a Glancing hit or better.","x":"n","v":null,"g":[]},{"t":"Presence: enemies making Morale checks with you in their line of sight suffer Disadvantage.","x":"n","v":null,"g":[]}],"no":["Minimum Physique 5, Willpower 3. Maximum Dexterity 2 at time of selection."]},{"n":"Man Mountain","k":"G","s":"E","m":[{"t":"+4 Physique (raw strength — replaces +2).","x":"t","v":4,"g":[["attr","PHY"]]},{"t":"+4 Leadership and Persuasion (fear or physical presence — replaces +2).","x":"t","v":4,"g":[["skill","Leadership"],["skill","Persuasion"]]},{"t":"May wield two-handed weapons in one hand without penalty (retained).","x":"n","v":null,"g":[]},{"t":"Grapple strikes inflict +2 additional Bruise levels on a Glancing hit or better (replaces +1).","x":"n","v":null,"g":[]},{"t":"Presence: enemies making Morale checks with you in their line of sight suffer Disadvantage (retained).","x":"n","v":null,"g":[]},{"t":"Unstoppable Force: when you advance to Close or Contact measure against an opponent, you may force them to make a Physique test (TN 10) or be knocked prone.","x":"n","v":null,"g":[]},{"t":"Immovable: you cannot be knocked prone by any combat effect except abilities that specifically state they function against targets of exceptional size.","x":"n","v":null,"g":[]},{"t":"Slow and Deliberate: you cannot benefit from Advantage on Dexterity-based tests and suffer Disadvantage on Stealth checks.","x":"n","v":null,"g":[]}],"no":["Minimum Physique 6, Willpower 4. Maximum Dexterity 1 at time of selection."]},{"n":"The Wrong Angle","k":"G","s":"E","m":[{"t":"Any opponent fighting you for the first time treats their effective Conceal allocation as reduced by 2 when computing the BA check TN against you.","x":"n","v":null,"g":[]},{"t":"Declare your attack as entirely outside your opponent's anticipation — they defend as if they failed their BA check regardless of their actual roll.","x":"n","v":null,"g":[]}],"no":[]},{"n":"The Unread Blade","k":"G","s":"E","m":[{"t":"Any opponent fighting you treats their effective Conceal allocation as reduced by 4 when computing the BA check TN against you (replaces -2).","x":"n","v":null,"g":[]},{"t":"When an opponent achieves a Deep read against you, they receive only Clear read information instead.","x":"n","v":null,"g":[]},{"t":"Declare your attack as entirely outside your opponent's anticipation — they defend as if they failed their BA check regardless of their actual roll (retained).","x":"n","v":null,"g":[]},{"t":"+1 all attack rolls against opponents who have fought you before and believe they know what to expect.","x":"t","v":1,"g":[]}],"no":[]},{"n":"Pain Tolerance","k":"G","s":"E","m":[{"t":"Immediate wound effects (STUM, STAG, STUN, NUMB) from Bruise and Flesh tier wounds do not apply. Persistent effects apply normally.","x":"n","v":null,"g":[]},{"t":"Telling tier immediate effects apply, but you may make a Physique test (TN 10) to suppress them for one additional round before they take effect.","x":"n","v":null,"g":[]},{"t":"+1 Physique (any effect that operates through pain).","x":"t","v":1,"g":[["attr","PHY"]]}],"no":["Does not affect Critical tier wounds or Head/Neck Instant Death triggers."]},{"n":"Iron Will","k":"G","s":"E","m":[{"t":"+3 Willpower (coercion, intimidation, and supernatural influence).","x":"t","v":3,"g":[["attr","WIL"]]},{"t":"Reroll any failed Willpower test and take the better result.","x":"n","v":null,"g":[]},{"t":"Delayed Recognition: the Chronicler may inform you after an exchange that a wound you registered as less severe is actually one tier higher than you perceived.","x":"n","v":null,"g":[]}],"no":[]},{"n":"Unflinching","k":"G","s":"E","m":[{"t":"Immune to Morale checks triggered by reputation-based fear.","x":"n","v":null,"g":[]},{"t":"Allies within your Macro Zone gain +2 Morale checks.","x":"n","v":null,"g":[]},{"t":"+2 Willpower (fear effects, supernatural dread, and psychological pressure).","x":"t","v":2,"g":[["attr","WIL"]]}],"no":["Minimum Willpower 3."]},{"n":"Void of Fear","k":"G","s":"E","m":[{"t":"Immune to all morale effects generated by reputation-based fear, including Shaken, Wavering, and Broken from an opponent's renown.","x":"n","v":null,"g":[]},{"t":"Immune to supernatural fear effects — magical dread, undead presence, divine terror, and similar. These register as awareness of threat, not fear.","x":"n","v":null,"g":[]},{"t":"Intimidation attempts against you automatically fail unless backed by actual physical leverage.","x":"n","v":null,"g":[]},{"t":"+1 Willpower (maintaining composure under pressure).","x":"t","v":1,"g":[["attr","WIL"]]}],"no":["Minimum Willpower 3."]},{"n":"Fierce Warrior","k":"G","s":"E","m":[{"t":"+1 all attack rolls (primary weapon type).","x":"t","v":1,"g":[]},{"t":"When you score a Flush hit, gain +1 Momentum beyond the normal gain.","x":"n","v":null,"g":[]}],"no":["Primary weapon Competent (SCL 4) or above. Starting occupation must be Tribal Warrior."]},{"n":"Berserker","k":"G","s":"E","m":[{"t":"+2 all attack rolls (replaces +1).","x":"t","v":2,"g":[]},{"t":"While at Telling wound tier or above: ignore all Endurance penalties for the duration of that combat; +1 all attack and defence rolls; lose access to strategies requiring a Deep read result — BA pool still functions but conditional strategies requiring Deep read cannot be declared.","x":"n","v":null,"g":[]},{"t":"Opponents whose primary weapon SCL is below Veteran level (SCL 8) must make a Willpower test (TN 10) when you enter combat or suffer the Shaken condition.","x":"n","v":null,"g":[]}],"no":["Primary weapon Competent (SCL 4) or above. Starting occupation must be Tribal Warrior."]},{"n":"Tactician","k":"G","s":"E","m":[{"t":"+2 Battlefield Tactics.","x":"a","v":2,"g":[["skill","Battlefield Tactics"]]}],"no":["Chapter: Tactical Read — identify a tactical advantage. Chronicler interpreted.","Battlefield Tactics Competent (SCL 4) or above. Minimum Intellect 2."]},{"n":"Military Genius","k":"G","s":"E","m":[{"t":"+3 Battlefield Tactics and +2 Siege Warfare (replaces +2 Battlefield Tactics).","x":"t","v":3,"g":[["skill","Battlefield Tactics"],["skill","Siege Warfare"]]},{"t":"Subordinates under your direct command receive +2 Battlefield Tactics and Leadership checks.","x":"n","v":null,"g":[]},{"t":"+2 Morale checks for all allies when you are in active command.","x":"t","v":2,"g":[]}],"no":["Chapter: Tactical Insight — reveal one genuine mechanical or positional advantage your side can exploit. Chronicler interpreted.","Battlefield Tactics Competent (SCL 4) or above. Minimum Intellect 2."]},{"n":"Eye for a Bargain","k":"G","s":"E","m":[{"t":"+2 Trading.","x":"a","v":2,"g":[["skill","Trading"]]},{"t":"When appraising an item you automatically know its rough value within 30% without a roll. A successful Trading check (TN 10) narrows this to within 10%.","x":"n","v":null,"g":[]},{"t":"+1 Reaction (merchants and traders who recognise your commercial instincts).","x":"t","v":1,"g":[]}],"no":["Minimum Perception 2."]},{"n":"The True Weight","k":"G","s":"E","m":[{"t":"+3 Trading (replaces +2).","x":"t","v":3,"g":[["skill","Trading"]]},{"t":"When appraising an item you automatically know its rough value within 10% without a roll. A successful Trading check (TN 10) narrows this to within 2%.","x":"n","v":null,"g":[]},{"t":"+2 Reaction (merchants and traders — replaces +1).","x":"t","v":2,"g":[]},{"t":"You can assess the approximate relative wealth and economic position of any person or group you observe for at least one minute. Chronicler interpreted.","x":"n","v":null,"g":[]}],"no":["Minimum Perception 2."]},{"n":"Joust-Ready","k":"G","s":"E","m":[{"t":"+1 all Jousting checks.","x":"a","v":1,"g":[["skill","Jousting"]]},{"t":"+1 Horsemanship (during a jousting run).","x":"t","v":1,"g":[["skill","Horsemanship"]]},{"t":"You never suffer the standard -1 penalty for your first tournament joust.","x":"n","v":null,"g":[]}],"no":["Jousting Competent (SCL 4) or above."]},{"n":"The Tiltyard Born","k":"G","s":"E","m":[{"t":"+3 all Jousting checks (replaces +1).","x":"t","v":3,"g":[["skill","Jousting"]]},{"t":"+2 Horsemanship (during a jousting run — replaces +1).","x":"t","v":2,"g":[["skill","Horsemanship"]]},{"t":"When you land a successful lance strike, you may force your opponent to make a Physique test (TN 12). On failure they lose their grip on the lance for the remainder of the charge.","x":"n","v":null,"g":[]},{"t":"+2 Reaction (noble and tournament social contexts).","x":"t","v":2,"g":[]},{"t":"When you unhorse an opponent, gain +1 Momentum at the start of your next pass.","x":"n","v":null,"g":[]}],"no":["Jousting Veteran (SCL 8) or above. Must possess Joust-Ready."]},{"n":"Nature's Squire","k":"G","s":"E","m":[{"t":"+1 all attack rolls (chosen weapon type).","x":"t","v":1,"g":[]},{"t":"You never suffer the Unfamiliar Weapon penalty when using any weapon of your chosen type.","x":"n","v":null,"g":[]},{"t":"Opponents attempting to read your fighting style through BA checks suffer -1 to their BA check against you in the first round of combat.","x":"n","v":null,"g":[]},{"t":"When you witness another fighter use a combat manoeuvre with your chosen weapon type, you may attempt to replicate it in the same combat. Make a weapon skill check (TN equal to the original user's roll). On success, you may use that manoeuvre for the remainder of the combat.","x":"n","v":null,"g":[]}],"no":["Primary weapon Competent (SCL 4) or above. Choose one weapon type at creation: Sword, Axe, Mace, Polearm, Dagger (Swordsmanship), or Grapple."]},{"n":"Blade-Born","k":"G","s":"E","m":[{"t":"+3 all attack and defence rolls (chosen weapon — replaces +1).","x":"t","v":3,"g":[]},{"t":"When you score a Flush hit with your chosen weapon, gain +2 additional Momentum beyond the normal Flush hit gain (total +4 Momentum on a Flush hit).","x":"n","v":null,"g":[]},{"t":"Strike of Birthright: your next attack automatically achieves a Flush result regardless of the margin. The defender still rolls — a complete defensive success negates the attack entirely. If it connects at all, it connects as Flush.","x":"n","v":null,"g":[]},{"t":"Opponents who have witnessed you use this weapon must make a Willpower test (TN 10) to willingly engage you in single combat.","x":"n","v":null,"g":[]},{"t":"In any round in which you have not yet acted, your chosen weapon is treated as already drawn even if you were surprised.","x":"n","v":null,"g":[]}],"no":["Primary weapon Veteran (SCL 8) or above. Must possess Nature's Squire.","Physique attribute is 5.","+2 all Physique Attribute tests.","Dying timer extended by +1 round (in addition to Physique score).","Reroll one failed Physique test or Physique-based skill test per story chapter.","Physique attribute is 6.","+4 all Physique Attribute tests (replaces +2).","Dying timer extended by +2 rounds (replaces +1).","Reroll one failed Physique test or Physique-based skill test per scene (replaces per story chapter).","When you would suffer a wound effect imposing a movement or action penalty (STUM, STAG, STUN, KNEE), you may ignore that effect entirely.","Must be taken at character creation.","Dexterity attribute is 5.","+2 all Dexterity Attribute tests.","Speed treated as 1 higher for initiative purposes.","Reroll one failed Dexterity test or Dexterity-based skill test per story chapter.","Dexterity attribute is 6.","+4 all Dexterity Attribute tests (replaces +2).","Speed treated as 2 higher for initiative purposes (replaces +1).","Reroll one failed Dexterity test or Dexterity-based skill test per scene (replaces per story chapter).","When an opponent declares an attack against you, you may declare that you were not where they aimed. The attack automatically misses regardless of the roll.","Must be taken at character creation.","Perception attribute is 5.","+2 all Perception Attribute tests.","Automatically notice any ambush or trap within Close measure without a roll.","Reroll one failed Perception test or Perception-based skill test per story chapter.","Perception attribute is 6.","+4 all Perception Attribute tests (replaces +2).","Automatically notice any ambush or trap within Reach measure without a roll (replaces Close).","Reroll one failed Perception test or Perception-based skill test per scene (replaces per story chapter).","Story: Perceive a hidden truth about a person, place, or object that others cannot see. Chronicler interpreted.","Must be taken at character creation.","Intellect attribute is 5.","+2 all Intellect Attribute tests.","Automatically recall anything personally witnessed, read, or been told with accurate recall.","Reroll one failed Intellect test or Intellect-based skill test per story chapter.","Intellect attribute is 6.","+4 all Intellect Attribute tests (replaces +2).","Automatically recall anything personally witnessed, read, or been told; may make logical leaps connecting unrelated information without a roll.","Reroll one failed Intellect test or Intellect-based skill test per scene (replaces per story chapter).","Story: Flash of Insight — declare a solution, hidden connection, or answer to a riddle. Chronicler interpreted.","Must be taken at character creation.","Willpower attribute is 5.","+2 all Willpower Attribute tests.","Immune to Morale checks triggered by reputation-based fear.","Reroll one failed Willpower test or Willpower-based skill test per story chapter.","Willpower attribute is 6.","+4 all Willpower Attribute tests (replaces +2).","Immune to all fear effects — Morale checks, supernatural dread, intimidation attempts — regardless of source.","Reroll one failed Willpower test or Willpower-based skill test per scene (replaces per story chapter).","Scene: when you would be reduced to the Dying state, you may ignore that result entirely. You remain standing at Critical tier with 1 remaining Wound level.","Must be taken at character creation.","Charisma attribute is 5.","+2 all Charisma Attribute tests.","Initial Reaction from any NPC who is not already hostile begins at Cautious rather than Neutral.","Reroll one failed Charisma test or Charisma-based skill test per story chapter.","Charisma attribute is 6.","+4 all Charisma Attribute tests (replaces +2).","Initial Reaction from any NPC who is not already hostile begins at Receptive rather than Neutral (replaces Cautious).","Reroll one failed Charisma test or Charisma-based skill test per scene (replaces per story chapter).","Story: bind a single NPC's heart to your cause. They become a genuine ally or follower, acting in your interest even at personal cost. Chronicler interpreted.","Must be taken at character creation."]}];
+const OSG_GROUPS={"Courtly": ["Etiquette", "Feudal Hunting", "Heraldry", "Horsemanship", "Oratory", "Stewardship"], "Common": ["Archery", "Blacksmith", "Peasantry Weapons", "Woodcraft"], "Seafaring": ["Climbing", "Seamanship", "Speak Language", "Swimming"], "Social": ["Carousing", "Deception", "Oratory", "Performance", "Persuasion"], "Knowledge": ["Academia", "Chirurgy", "Heraldry", "Herbalism", "History", "Literacy", "Regional Lore", "Speak Language", "Theology", "World Lore"], "Roguery": ["Lockpicking", "Sleight of Hand", "Stealth", "Thieves' Cant"], "Martial": ["Archery", "Axe", "Grapple", "Jousting", "Mace", "Martial Prowess", "Polearms", "Swordsmanship", "Thrown Weapons"], "Divine": ["Divine Ritual", "Runic Lore", "Theology"], "Wilderness": ["Acrobatics", "Awareness", "Climbing", "Herbalism", "Horsemanship", "Stealth", "Tracking", "Wilderness Survival", "Woodcraft"], "Strategos": ["Battlefield Tactics", "Leadership", "Siege Warfare"], "Arcane": ["Alchemy", "Arcane Ritual", "Otherworldly Lore", "Runic Lore"], "Commerce": ["Speak Language", "Streetwise", "Trading"]};
+const OSG_TABLE={"Noble": {"Courtier": {"Courtly": 3, "Common": -3, "Seafaring": -3, "Social": 1, "Knowledge": 1, "Roguery": -2, "Martial": 0, "Divine": -4, "Wilderness": -3, "Strategos": -1, "Arcane": -5, "Commerce": 0}, "Knight": {"Courtly": 1, "Common": -1, "Seafaring": -1, "Social": 0, "Knowledge": 0, "Roguery": -2, "Martial": 3, "Divine": -4, "Wilderness": -1, "Strategos": 2, "Arcane": -5, "Commerce": 0}, "Court Lady": {"Courtly": 2, "Common": -3, "Seafaring": -4, "Social": 0, "Knowledge": 0, "Roguery": -3, "Martial": -3, "Divine": -4, "Wilderness": -3, "Strategos": -2, "Arcane": -5, "Commerce": 0}, "Tribal Noble": {"Courtly": -2, "Common": 0, "Seafaring": -1, "Social": 1, "Knowledge": -2, "Roguery": -1, "Martial": 3, "Divine": -2, "Wilderness": 2, "Strategos": 0, "Arcane": -4, "Commerce": 0}}, "Military": {"Man-at-Arms": {"Courtly": 0, "Common": -1, "Seafaring": -1, "Social": 0, "Knowledge": -1, "Roguery": -2, "Martial": 2, "Divine": -4, "Wilderness": -1, "Strategos": -1, "Arcane": -5, "Commerce": 0}, "Mercenary": {"Courtly": -2, "Common": 0, "Seafaring": -1, "Social": 1, "Knowledge": -2, "Roguery": -1, "Martial": 2, "Divine": -4, "Wilderness": 0, "Strategos": -1, "Arcane": -5, "Commerce": 0}, "Tribal Warrior": {"Courtly": -3, "Common": 0, "Seafaring": -1, "Social": 0, "Knowledge": -3, "Roguery": -1, "Martial": 3, "Divine": -3, "Wilderness": 3, "Strategos": -1, "Arcane": -4, "Commerce": 0}}, "Clergy": {"Feudal Clergy": {"Courtly": 1, "Common": -2, "Seafaring": -2, "Social": -2, "Knowledge": 2, "Roguery": -3, "Martial": -1, "Divine": 3, "Wilderness": -2, "Strategos": -3, "Arcane": -3, "Commerce": 0}, "Heretic": {"Courtly": -2, "Common": -1, "Seafaring": -2, "Social": 0, "Knowledge": 1, "Roguery": 0, "Martial": -1, "Divine": 3, "Wilderness": 0, "Strategos": -3, "Arcane": -2, "Commerce": 0}, "Faith Champion": {"Courtly": 1, "Common": -1, "Seafaring": -1, "Social": -2, "Knowledge": 0, "Roguery": -2, "Martial": 3, "Divine": 2, "Wilderness": -1, "Strategos": 1, "Arcane": -3, "Commerce": 0}, "Tribal Shaman": {"Courtly": -2, "Common": 0, "Seafaring": -2, "Social": 0, "Knowledge": 0, "Roguery": 0, "Martial": 0, "Divine": 3, "Wilderness": 2, "Strategos": -2, "Arcane": -2, "Commerce": 0}}, "Mercantile": {"Merchant": {"Courtly": 0, "Common": -2, "Seafaring": -1, "Social": 1, "Knowledge": 1, "Roguery": -2, "Martial": -1, "Divine": -4, "Wilderness": -2, "Strategos": -2, "Arcane": -5, "Commerce": 3}}, "Commoner": {"Herbalist": {"Courtly": -2, "Common": -2, "Seafaring": -4, "Social": -3, "Knowledge": 0, "Roguery": -2, "Martial": -5, "Divine": -2, "Wilderness": 2, "Strategos": -5, "Arcane": -1, "Commerce": -1}}, "Maritime": {"Mariner": {"Courtly": -2, "Common": 0, "Seafaring": 3, "Social": 1, "Knowledge": -1, "Roguery": -1, "Martial": 0, "Divine": -4, "Wilderness": -1, "Strategos": -2, "Arcane": -4, "Commerce": 0}, "Pirate": {"Courtly": -2, "Common": 0, "Seafaring": 3, "Social": 1, "Knowledge": -1, "Roguery": 0, "Martial": 2, "Divine": -4, "Wilderness": -1, "Strategos": -1, "Arcane": -4, "Commerce": 0}, "Smuggler": {"Courtly": -2, "Common": 0, "Seafaring": 3, "Social": 1, "Knowledge": -1, "Roguery": 1, "Martial": 1, "Divine": -4, "Wilderness": 0, "Strategos": -3, "Arcane": -4, "Commerce": 2}}, "Outcast": {"Wayfarer": {"Courtly": -2, "Common": 0, "Seafaring": 0, "Social": 1, "Knowledge": -1, "Roguery": 0, "Martial": 1, "Divine": -4, "Wilderness": 1, "Strategos": -2, "Arcane": -4, "Commerce": 0}, "Rogue": {"Courtly": -3, "Common": -1, "Seafaring": -3, "Social": 1, "Knowledge": -2, "Roguery": 3, "Martial": 0, "Divine": -4, "Wilderness": -2, "Strategos": -3, "Arcane": -5, "Commerce": 1}, "Magos": {"Courtly": -1, "Common": -2, "Seafaring": -3, "Social": 0, "Knowledge": 2, "Roguery": -2, "Martial": -1, "Divine": -4, "Wilderness": -1, "Strategos": -3, "Arcane": 3, "Commerce": -1}}};
+const SUBOCC={"Noble": ["Courtier", "Knight", "Court Lady", "Tribal Noble"], "Military": ["Man-at-Arms", "Mercenary", "Tribal Warrior"], "Clergy": ["Feudal Clergy", "Heretic", "Faith Champion", "Tribal Shaman"], "Mercantile": ["Merchant"], "Commoner": ["Herbalist"], "Maritime": ["Mariner", "Pirate", "Smuggler"], "Outcast": ["Wayfarer", "Rogue", "Magos"]};
+const MECH={"def_Parry": "<b>Parry &mdash; 1d10 + Weapon Skill + weapon Parry mod.</b> Active deflection with the weapon. Most effective against single strikes, thrusts on a readable line, and balanced attacks. Far weaker against bludgeons — the force transmits through the contact. Requires a weapon capable of parrying; cannot be used if the weapon arm is compromised.", "def_Evade": "<b>Evade &mdash; 1d10 + Martial Prowess + DEX.</b> Movement-based defence drawing on experience and agility. Best against committed attacks and thrusts; weaker against light attacks and wide slashes. Shifts your position. Available to any fighter regardless of equipment.", "def_Block": "<b>Block &mdash; 1d10 + Martial Prowess + Shield value.</b> Shield absorption. Most reliable against direct strikes to the covered zone and particularly effective against bludgeons. Creates no counter and no positional shift. Requires a shield; cannot be used if the off arm is compromised.", "def_Counter": "<b>Counter &mdash; 1d10 + Martial Prowess + DEX (&minus;3 if conditions unmet).</b> Spends your attack action as a reactive strike. Requires a successful BA read (Partial or Deep) and is unavailable in simultaneous exchanges. If the attack lands you take full damage and no counter fires. If it misses, your strike resolves as a counter: +2 to the attack roll, and the opponent loses any positive defensive modifiers.", "def_Covering": "<b>Covering Posture &mdash; 1d10 + Martial Prowess + DEX &minus; 4.</b> The fallback when no defensive intent is available — weapon arm disabled, shield lost, disarmed. Always counts as Zone Mismatch: you roll at Disadvantage and the Special Hit condition is always active. No intent or interaction modifiers apply.", "atk_Slash": "<b>Slash (S).</b> A cutting arc. Interaction with defences (applied to the defender): vs Parry <b>+2</b> (a readable arc deflects precisely) · vs Evade <b>&minus;2</b> (the wide arc is hard to fully avoid) · vs Block <b>0</b> · vs Counter <b>&minus;2</b>.", "atk_Thrust": "<b>Thrust (T).</b> A straight-line stab. vs Parry <b>0</b> · vs Evade <b>+2</b> (step off the line and it misses cleanly) · vs Block <b>&minus;2</b> · vs Counter <b>&minus;2</b>. Thrusting weapons on a Thrust strategy can <b>Impale</b> on a Special Hit.", "atk_Bludgeon": "<b>Bludgeon (B).</b> Crushing force. vs Parry <b>&minus;2</b> (force transmits through the contact) · vs Evade <b>0</b> · vs Block <b>+2</b> · vs Counter <b>&minus;2</b>. Clean/Flush bludgeon hits that fail to penetrate still bruise through armour (Clean 1, Flush 2 Bruise).", "wt_Light": "<b>Light weight of strike.</b> Speed over force, minimal telegraph. Damage <b>&minus;3</b>. Concealment <b>+2</b> to your Conceal roll. Defence interaction: <b>&minus;2 vs every defence</b> (hard to read, hard to defend). Quick recovery.", "wt_Balanced": "<b>Balanced weight of strike.</b> The neutral baseline. No damage modifier, no concealment modifier, <b>0</b> interaction against all defences.", "wt_Heavy": "<b>Heavy weight of strike.</b> Everything behind the blow. Damage <b>+2</b>. Concealment <b>&minus;2</b> to your Conceal roll. Defence interaction: <b>+2 vs every defence</b> (obvious, easier to read and dodge). Slow recovery if it misses.", "sh_confirm": "<b>Confirming a Special Hit.</b> All must be true at once: Zone Mismatch is active; a Deep Read was achieved this exchange (or 2 Momentum spent to bypass); the hit is Clean or Flush; and your attack <b>d10</b> meets the effective threshold. Threshold = base by Martial Prowess tier (Competent 10 · Experienced 9 · Veteran 8 · Expert 7 · Master 6) minus the weapon's SHC modifier, minimum 2. Not available below Competent.", "sh_A": "<b>Option A &mdash; Armour Breach.</b> Halve the Armour DR at the struck location before damage is calculated (round down). Defender Physique is unaffected.", "sh_B": "<b>Option B &mdash; Deep Strike.</b> Double the Flesh, Telling, and Critical wound levels this hit inflicts (Bruise is not doubled). Apply the normal wound result first, then double the serious tiers. Overflow cap: at most 1 level carries to the tier above at each boundary; excess is lost.", "sh_C": "<b>Option C &mdash; Impale / Drive to Knee.</b> Thrusting weapon on a Thrust strategy: <b>Impale</b> — the weapon lodges, normal damage, the defender takes &minus;2 to actions involving that location; removal is PHY vs TN 8 and (except on a natural 10) inflicts two more Flesh wounds. Any other weapon or strategy: <b>Drive to Knee</b> — the KNEE condition applies (positional force, no Bleeding).", "sh_D": "<b>Option D &mdash; Mark.</b> Normal damage, no mechanical bonus, but the struck fighter carries a permanent visible scar at that location for the rest of their days. The choice when the story matters more than the exchange.", "sh_E": "<b>Option E &mdash; Strike to Arm.</b> Also costs 2 Momentum. Direct the Special Hit at the weapon arm or off arm (your choice), resolved normally against that location's Armour DR. Arms are not otherwise targetable.", "hitq": "<b>Hit quality (margin of attack over defence).</b> Defender meets or beats you = <b>Miss</b> (defender +1 Momentum). Beat by <b>1&ndash;4 = Glancing</b> (armour usually absorbs). Beat by <b>5&ndash;9 = Clean</b> (+1 Momentum if it penetrates). Beat by <b>10+ = Flush</b> (+2 Momentum if it penetrates).", "target": "<b>Targeting (location difficulty, applied to the attack roll).</b> Torso <b>0</b> · Legs <b>&minus;1</b> · Head <b>&minus;3</b>. The arms are reachable only through Special Hit Option E. A Deep Read lets the defender know the exact location; otherwise they guess across the three.", "ba": "<b>Battle Awareness.</b> Each fighter may spend AP on Reveal and/or Conceal (each adds +1d10 to that roll). The contest always fires. If Conceal wins or ties, the attacker stays hidden. Reveal winning by <b>1&ndash;4 = Partial Read</b> (attack type + weight). By <b>5+ = Deep Read</b> (exact location, type, weight, and any Special Attack).", "ap": "<b>Action Points.</b> Your pool each round = base by Martial Prowess tier (Unskilled 1 · Novice 2 · Competent 3 · Experienced 5 · Veteran 6 · Expert 8 · Master 10) + INT. A maximum of 3 offensive actions per round; defences are limited only by AP. Normal attack 2 · Committed 4 · Special 6 · Reveal/Conceal/normal defence 1 each.", "mom": "<b>Momentum.</b> Caps at 5. Gained from misses and penetrating hits; spent to bypass the Deep-Read requirement for a Special Hit (2) or to power Strike to Arm (2). Some Gifts and Chronique rewards raise the cap or grant it conditionally — use the adjustment field for those."};
+const MECH_TITLES={"def_Parry": "Parry", "def_Evade": "Evade", "def_Block": "Block", "def_Counter": "Counter", "def_Covering": "Covering Posture", "atk_Slash": "Slash", "atk_Thrust": "Thrust", "atk_Bludgeon": "Bludgeon", "wt_Light": "Light Weight", "wt_Balanced": "Balanced Weight", "wt_Heavy": "Heavy Weight", "sh_confirm": "Confirming a Special Hit", "sh_A": "Armour Breach", "sh_B": "Deep Strike", "sh_C": "Impale / Drive to Knee", "sh_D": "Mark", "sh_E": "Strike to Arm", "hitq": "Hit Quality", "target": "Targeting", "ba": "Battle Awareness", "ap": "Action Points", "mom": "Momentum"};
+const WEAPONS={"Arming Sword (1h)": {"m": "Close", "s": "+2", "g": "4", "c": "9", "f": "14", "h": "+1", "p": "+2", "t": "S/T"}, "Ball & Chain (1h)": {"m": "Close", "s": "−4", "g": "6", "c": "13", "f": "19", "h": "−3", "p": "N/A", "t": "B"}, "Battle Axe (1h)": {"m": "Close", "s": "−1", "g": "9", "c": "15", "f": "21", "h": "−1", "p": "−2", "t": "S"}, "Battle Axe (2h)": {"m": "Reach", "s": "−2", "g": "12", "c": "19", "f": "25", "h": "−1", "p": "−1", "t": "S"}, "Bearded Axe (1h)": {"m": "Close", "s": "0", "g": "5", "c": "11", "f": "16", "h": "−1", "p": "−2", "t": "S"}, "Bill (2h)": {"m": "Long", "s": "−1", "g": "7", "c": "14", "f": "20", "h": "−1", "p": "−1", "t": "S/T"}, "Crow's Beak (2h)": {"m": "Reach", "s": "−1", "g": "8", "c": "16", "f": "21", "h": "+1", "p": "−1", "t": "T/B"}, "Falchion (light)": {"m": "Close", "s": "+1", "g": "5", "c": "11", "f": "16", "h": "0", "p": "0", "t": "S"}, "Falchion (heavy)": {"m": "Close", "s": "0", "g": "7", "c": "13", "f": "18", "h": "0", "p": "−1", "t": "S"}, "Flanged Mace (1h)": {"m": "Close", "s": "0", "g": "6", "c": "12", "f": "17", "h": "−1", "p": "−3", "t": "B"}, "Glaive (2h)": {"m": "Long", "s": "0", "g": "5", "c": "11", "f": "16", "h": "0", "p": "−1", "t": "S/T"}, "Halberd (2h)": {"m": "Long", "s": "−1", "g": "8", "c": "15", "f": "22", "h": "0", "p": "−1", "t": "S/T"}, "Lance (mounted)": {"m": "Long", "s": "0", "g": "12", "c": "25", "f": "35", "h": "0", "p": "N/A", "t": "T"}, "Long Knife (1h)": {"m": "Contact", "s": "+4", "g": "3", "c": "8", "f": "12", "h": "+3", "p": "0", "t": "S/T"}, "Longsword (1h)": {"m": "Close", "s": "+3", "g": "5", "c": "11", "f": "16", "h": "+1", "p": "+2", "t": "S/T"}, "Longsword (2h)": {"m": "Reach", "s": "+2", "g": "8", "c": "14", "f": "19", "h": "+2", "p": "+3", "t": "S/T"}, "Maul / Great Hammer (2h)": {"m": "Reach", "s": "−3", "g": "10", "c": "17", "f": "25", "h": "−2", "p": "−2", "t": "B"}, "Morningstar (1h)": {"m": "Close", "s": "0", "g": "7", "c": "13", "f": "18", "h": "−1", "p": "−3", "t": "B/T"}, "Pick (1h)": {"m": "Close", "s": "0", "g": "8", "c": "15", "f": "21", "h": "+2", "p": "−3", "t": "T/B"}, "Quarterstaff (2h)": {"m": "Long", "s": "+1", "g": "4", "c": "8", "f": "12", "h": "0", "p": "+2", "t": "B"}, "Scimitar (1h)": {"m": "Close", "s": "+3", "g": "4", "c": "8", "f": "13", "h": "0", "p": "0", "t": "S"}, "Spear (2h)": {"m": "Long", "s": "0", "g": "4", "c": "9", "f": "14", "h": "0", "p": "−1", "t": "T"}, "Two-Handed Flail (2h)": {"m": "Reach", "s": "−3", "g": "8", "c": "15", "f": "22", "h": "−3", "p": "N/A", "t": "B"}, "Warhammer (1h)": {"m": "Close", "s": "0", "g": "8", "c": "14", "f": "19", "h": "−1", "p": "−3", "t": "B"}};
+const ARMOUR={"W1 — Condemned Prisoner": [0, 0, 0, 0, 0, 0], "W2 — Pressed Levy": [0, 5, 5, 5, 3, 3], "W3 — Town Watchman": [3, 5, 5, 5, 3, 4], "W4 — Brigand": [9, 5, 6, 6, 4, 6], "W5 — Outlaw Captain": [9, 12, 6, 6, 4, 11], "W6 — Foot Soldier (mail)": [12, 10, 11, 11, 9, 26], "W7 — Sellsword (mail)": [14, 10, 11, 11, 10, 26], "W8 — Squire (mail)": [14, 10, 11, 11, 10, 26], "W9 — Man-at-Arms (mail)": [16, 10, 11, 11, 10, 27], "W10 — Retainer (mail)": [16, 15, 11, 11, 9, 28], "W11 — Hedge Knight (mail)": [14, 10, 11, 11, 9, 26], "W12 — Knight (coat of plates)": [16, 15, 14, 11, 9, 30], "W13 — Knight Errant (coat of plates)": [24, 15, 14, 11, 9, 38], "W14 — Wealthy Knight (coat of plates)": [22, 18, 15, 15, 13, 41], "W15 — Outrider (cavalry)": [13, 11, 6, 6, 8, 17], "W16 — Mounted Knight (cavalry)": [18, 15, 11, 11, 12, 36], "N1 — Norse Warrior": [16, 10, 11, 11, 10, 27], "N2 — Norse Huscarl": [18, 10, 11, 11, 10, 28], "N3 — Norse Jarl": [18, 15, 11, 11, 9, 29], "E1 — Steppe Rider (lamellar)": [13, 11, 5, 5, 11, 13], "E2 — Eastern Soldier (lamellar)": [16, 11, 11, 11, 11, 19], "E3 — Eastern Veteran (lamellar)": [18, 13, 17, 14, 11, 29], "E4 — Armoured Rider (lamellar)": [18, 13, 14, 11, 11, 27], "E5 — Eastern Warlord (lamellar)": [18, 13, 18, 18, 14, 37]};
+const WSKILL={"Arming Sword (1h)": "Swordsmanship", "Ball & Chain (1h)": "Mace", "Battle Axe (1h)": "Axe", "Battle Axe (2h)": "Axe", "Bearded Axe (1h)": "Axe", "Bill (2h)": "Polearms", "Crow's Beak (2h)": "Mace", "Falchion (light)": "Swordsmanship", "Falchion (heavy)": "Swordsmanship", "Flanged Mace (1h)": "Mace", "Glaive (2h)": "Polearms", "Halberd (2h)": "Polearms", "Lance (mounted)": "Jousting", "Long Knife (1h)": "Swordsmanship", "Longsword (1h)": "Swordsmanship", "Longsword (2h)": "Swordsmanship", "Maul / Great Hammer (2h)": "Mace", "Morningstar (1h)": "Mace", "Pick (1h)": "Mace", "Quarterstaff (2h)": "Polearms", "Scimitar (1h)": "Swordsmanship", "Spear (2h)": "Polearms", "Two-Handed Flail (2h)": "Mace", "Warhammer (1h)": "Mace"};
+
+const ATTRS=[["Dexterity","DEX","attack speed \u00b7 evasion \u00b7 init. ties"],["Perception","PER","reading foes \u00b7 sensing wrong"],["Physique","PHY","damage \u00b7 carry \u00b7 endurance"],["Intellect","INT","action points \u00b7 concealing"],["Charisma","CHA","all social influence"],["Willpower","WIL","fear \u00b7 will \u00b7 the arcane"]];
+const SCLV=[["Unskilled",null],["Novice",2],["Competent",4],["Experienced",6],["Veteran",8],["Expert",10],["Master",12]];
+const BASEAP={"Unskilled":1,"Novice":2,"Competent":3,"Experienced":5,"Veteran":6,"Expert":8,"Master":10};
+const SKILLGROUPS=[
+ ["Communication","CHA",["Carousing","Deception","Etiquette","Leadership","Oratory","Performance","Persuasion","Speak Language","Streetwise"]],
+ ["Coordination","DEX",["Acrobatics","Jousting","Lockpicking","Seamanship","Sign Language","Sleight of Hand","Swordsmanship","Thrown Weapons","Woodcraft"]],
+ ["Knowledge","INT",["Academia","Battlefield Tactics","Chirurgy","Heraldry","Herbalism","History","Literacy","Regional Lore","Siege Warfare","Stewardship","Theology","World Lore"]],
+ ["Mystical Lores","WIL",["Alchemy","Arcane Ritual","Divine Ritual","Otherworldly Lore","Runic Lore"]],
+ ["Perception","PER",["Awareness","Feudal Hunting","Horsemanship","Stealth","Thieves' Cant","Tracking","Trading","Wilderness Survival"]],
+ ["Physique","PHY",["Archery","Axe","Blacksmith","Climbing","Grapple","Mace","Peasantry Weapons","Polearms","Swimming"]]];
+const WEAPON_SKILLS=["Axe","Mace","Polearms","Swordsmanship","Archery","Thrown Weapons","Peasantry Weapons","Grapple","Jousting"];
+const CONDITIONS=["Stunned","Stumble","Prone","Bleeding","Limb","Disarmed","Knocked Out","Dying","Shaken","Wavering","Fleeing"];
+const ATTR_IDX={DEX:0,PER:1,PHY:2,INT:3,CHA:4,WIL:5};
+const SKILL_ATTR={}; SKILLGROUPS.forEach(g=>g[2].forEach(s=>SKILL_ATTR[s]=g[1]));
+// skill -> list of occupational groups
+const SKILL_OSGG={}; for(const grp in OSG_GROUPS){OSG_GROUPS[grp].forEach(s=>{(SKILL_OSGG[s]=SKILL_OSGG[s]||[]).push(grp);});}
+
+let S={attrs:[0,0,0,0,0,0],ggb:[],weapons:[],runics:[],reps:[],conds:{},tier:"",tierText:{},ap:0,mom:0,wounds:{Bruise:0,Flesh:0,Telling:0,Critical:0},fields:{},portrait:"",osgOverride:{},runicOn:false};
+
+/* ---------- helpers ---------- */
+function ce(t,c,h){const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+function cssEsc(s){return String(s).replace(/(['"\\])/g,'\\$1');}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function attrMod(ab){return S.attrs[ATTR_IDX[ab]]||0;}
+function sclVal(i){return SCLV[i]?SCLV[i][1]:null;}
+function getF(f){const el=document.querySelector('[data-f="'+f+'"]');return el?el.value:'';}
+
+/* ---------- popups ---------- */
+function popup(k){document.getElementById('modalTitle').textContent=MECH_TITLES[k]||'';document.getElementById('modalBody').innerHTML=MECH[k]||'';document.getElementById('modal').classList.add('show');}
+function closeModal(){document.getElementById('modal').classList.remove('show');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ---------- occupation ---------- */
+function buildOcc(){
+  const p=document.getElementById('occprime'); p.innerHTML='<option value="">\u2014 choose \u2014</option>'+Object.keys(OSG_TABLE).map(o=>`<option>${o}</option>`).join('');
+  p.addEventListener('change',()=>{fillSubocc(p.value,'');autofillOSG();updateOccReadout();recompute();});
+  document.getElementById('occsub').addEventListener('change',()=>{autofillOSG();updateOccReadout();recompute();});
+}
+function fillSubocc(prime,sel){
+  const s=document.getElementById('occsub');
+  s.innerHTML='<option value="">\u2014 choose \u2014</option>'+((SUBOCC[prime]||[]).map(o=>`<option ${o===sel?'selected':''}>${o}</option>`).join(''));
+}
+function autofillOSG(){
+  const prime=document.getElementById('occprime').value, sub=document.getElementById('occsub').value;
+  const tbl=(OSG_TABLE[prime]||{})[sub];
+  SKILLGROUPS.forEach(g=>g[2].concat([]).forEach(()=>{}));
+  const allSkills=[].concat(...SKILLGROUPS.map(g=>g[2]),["Martial Prowess"]);
+  allSkills.forEach(sk=>{
+    const inp=document.querySelector('input[data-osg="'+cssEsc(sk)+'"]'); if(!inp)return;
+    if(!tbl){return;}
+    let v=osgFor(sk,tbl,sub);
+    inp.value=v; S.osgOverride[sk]=v;
+  });
+}
+function osgFor(sk,tbl,sub){
+  const groups=SKILL_OSGG[sk]||[];
+  let best=null;
+  groups.forEach(grp=>{let m=tbl[grp];if(m===undefined)return;
+    if(sk==="Jousting"&&grp==="Martial"&&sub!=="Knight")m=Math.min(m,-2); // Jousting capped unless Knight
+    if(best===null||m>best)best=m;});
+  return best===null?0:best;
+}
+
+/* ---------- attributes ---------- */
+function buildAttrs(){
+  const c=document.getElementById('attrs');c.innerHTML='';
+  const cols=ce('div','attrcols');
+  const mk=(title,idxs)=>{
+    const col=ce('div','attrcol',`<div class="attrhead">${title}</div>`);
+    idxs.forEach(i=>{const a=ATTRS[i];
+      const d=ce('div','attr',`<div class="name">${a[0]}</div><div class="abbr">${a[1]}</div><input type="number" min="0" max="6" value="0" data-attr="${i}"><div class="gov">${a[2]}</div>`);
+      col.appendChild(d);
+      d.querySelector('input').addEventListener('input',e=>{let v=parseInt(e.target.value);v=isNaN(v)?0:Math.max(0,Math.min(6,v));S.attrs[i]=v;recompute();});
+    });
+    return col;
+  };
+  cols.appendChild(mk('Physical',[0,1,2]));
+  cols.appendChild(mk('Mental',[3,4,5]));
+  c.appendChild(cols);
+}
+
+/* ---------- skills ---------- */
+function sclSelect(key){return '<select data-scl="'+esc(key)+'">'+SCLV.map((s,i)=>{const lab=s[1]==null?s[0]:`${s[0]} (+${s[1]})`;return `<option value="${i}">${lab}</option>`;}).join('')+'</select>';}
+function buildSkills(){
+  const c=document.getElementById('skills');c.innerHTML='';
+  // Martial Prowess
+  const mp=ce('div','skillgroup','<div class="gh">Martial Prowess <span class="ia">variable \u2014 DEX/PER</span></div>');
+  const mpt=ce('table','sk');mpt.innerHTML=`<tr><td class="nm">Martial Prowess</td><td>${sclSelect('Martial Prowess')}</td><td style="width:40px"><input class="osgf" data-osg="Martial Prowess" placeholder="0"></td><td style="width:24px"></td><td><span class="tot zero" data-tot="Martial Prowess">\u2014</span></td></tr>`;
+  mp.appendChild(mpt);c.appendChild(mp);
+  SKILLGROUPS.forEach(g=>{
+    const w=ce('div','skillgroup',`<div class="gh"><span>${g[0]}</span><span class="ia">${g[1]} <span class="iaval" data-iaval="${g[1]}">0</span></span></div>`);
+    const t=ce('table','sk');
+    t.innerHTML='<tr><th style="text-align:left">Skill</th><th>Competency</th><th>OSG</th><th>Gift</th><th>Mod</th></tr>'+
+      g[2].map(sk=>`<tr><td class="nm">${sk}</td><td>${sclSelect(sk)}</td><td style="width:40px"><input class="osgf" data-osg="${esc(sk)}" placeholder="0"></td><td style="width:24px"><span class="gbadge" data-gb="${esc(sk)}"></span></td><td><span class="tot zero" data-tot="${esc(sk)}">\u2014</span></td></tr>`).join('');
+    w.appendChild(t);c.appendChild(w);
+  });
+  c.querySelectorAll('select[data-scl]').forEach(s=>s.addEventListener('change',recompute));
+  c.querySelectorAll('input[data-osg]').forEach(s=>s.addEventListener('input',()=>{S.osgOverride[s.dataset.osg]=parseInt(s.value)||0;recompute();}));
+}
+
+/* ---------- defences ---------- */
+function buildDefences(){
+  const c=document.getElementById('defences');c.innerHTML='';
+  [["Parry","def_Parry","d_parry","Weapon Skill + parry mod"],
+   ["Evade","def_Evade","d_evade","Martial Prowess + DEX"],
+   ["Block","def_Block","d_block","Martial Prowess + Shield"],
+   ["Counter","def_Counter","d_counter","Martial Prowess + DEX"],
+   ["Covering","def_Covering","d_cover","MP + DEX \u2212 4"]].forEach(d=>{
+    const row=ce('div','defrow',`<div class="dn" onclick="popup('${d[1]}')">${d[0]}</div><div class="dv" data-def="${d[2]}">0</div><div class="df">${d[3]}</div>`);
+    c.appendChild(row);
+  });
+}
+
+/* ---------- wounds ---------- */
+function buildWounds(){
+  const c=document.getElementById('wounds');c.innerHTML='';
+  ["Bruise","Flesh","Telling","Critical"].forEach(t=>{
+    c.appendChild(ce('div','wl',`${t} <b data-cap="${t}">0</b>`));
+    c.appendChild(ce('div',null,`<input type="number" class="adj" data-wadj="${t}" placeholder="0" title="adjustment">`));
+    const bw=ce('div','wbox');bw.dataset.tier=t;c.appendChild(bw);
+  });
+  c.querySelectorAll('input[data-wadj]').forEach(i=>i.addEventListener('input',recompute));
+}
+
+/* ---------- conditions ---------- */
+function buildConds(){
+  const c=document.getElementById('conds');c.innerHTML='';
+  CONDITIONS.forEach(cd=>{const el=ce('div','chip',cd);el.dataset.cond=cd;el.addEventListener('click',()=>{S.conds[cd]=!S.conds[cd];el.classList.toggle('on',S.conds[cd]);});c.appendChild(el);});
+}
+
+/* ---------- tiers ---------- */
+function buildTiers(){
+  const c=document.getElementById('tiers');c.innerHTML='';
+  ["I","II","III","IV","V","VI"].forEach((r,i)=>{
+    const t=ce('div','tier'+(i===5?' conf':''),`<div class="rn">${r}</div>`);t.dataset.tier=r;
+    t.addEventListener('click',()=>{S.tier=(S.tier===r?'':r);renderTierPanels();paintTiers();});
+    c.appendChild(t);
+  });
+}
+function paintTiers(){document.querySelectorAll('#tiers .tier').forEach(t=>t.classList.toggle('on',!!S.tierText[t.dataset.tier]||t.dataset.tier===S.tier));}
+function renderTierPanels(){
+  const wrap=document.getElementById('tierPanels');wrap.innerHTML='';
+  const open=new Set(Object.keys(S.tierText).filter(k=>S.tierText[k]));
+  if(S.tier)open.add(S.tier);
+  ["I","II","III","IV","V","VI"].forEach(r=>{
+    if(!open.has(r))return;
+    const p=ce('div','tierpanel',`<div class="tph">Tier ${r}${r==='VI'?' \u2014 confrontation':''}</div>`);
+    const ta=ce('textarea');ta.value=S.tierText[r]||'';ta.placeholder='What this tier brought \u2014 its revelation, cost, reward\u2026';
+    ta.addEventListener('input',()=>{S.tierText[r]=ta.value;});
+    p.appendChild(ta);wrap.appendChild(p);
+  });
+  paintTiers();
+}
+
+/* ---------- pips ---------- */
+function buildPips(id,count,cls,getter,setter){
+  const c=document.getElementById(id);c.innerHTML='';
+  for(let i=1;i<=count;i++){const p=ce('div','pip'+(cls?' '+cls:''));p.dataset.n=i;p.addEventListener('click',()=>{const cur=getter();setter(cur===i?i-1:i);});c.appendChild(p);}
+}
+function paintPips(id,val,cls){document.querySelectorAll('#'+id+' .pip').forEach(p=>p.classList.toggle('on',(+p.dataset.n)<=val));}
+
+/* ---------- weapons ---------- */
+function weaponOpts(sel){return '<option value="">\u2014 catalogue \u2014</option>'+Object.keys(WEAPONS).map(n=>`<option ${n===sel?'selected':''}>${esc(n)}</option>`).join('');}
+function addWeapon(w){w=w||{name:"",skill:"",meas:"",spd:"",gl:"",cln:"",fl:"",shc:"",parry:"",type:"",qual:"",active:false};S.weapons.push(w);renderWeapons();recompute();}
+function renderWeapons(){
+  const box=document.getElementById('weapons');if(!box)return;box.innerHTML='';
+  if(!S.weapons.some(w=>w.active)&&S.weapons.length)S.weapons[0].active=true;
+  S.weapons.forEach((w,idx)=>{
+    const card=ce('div','wcard'+(w.active?' active':''));
+    const skopt='<option value=""></option>'+WEAPON_SKILLS.map(s=>`<option ${w.skill===s?'selected':''}>${s}</option>`).join('');
+    const pickSel=WEAPONS[w.name]?w.name:'';
+    card.innerHTML=
+      '<div class="wtop">'+
+        `<input class="wact" type="radio" name="actw" ${w.active?'checked':''} data-actw="${idx}" title="active weapon">`+
+        `<select data-wpick="${idx}">${weaponOpts(pickSel)}</select>`+
+        `<input data-w="${idx}" data-wk="name" placeholder="weapon name" value="${esc(w.name)}">`+
+        `<select data-w="${idx}" data-wk="skill" title="weapon skill used for attack &amp; parry">${skopt}</select>`+
+        `<span class="qbox"><label>Qual</label><input type="number" data-w="${idx}" data-wk="qual" value="${esc(w.qual)}" placeholder="0" title="item-quality damage modifier"></span>`+
+        `<span class="rm" data-rmw="${idx}">\u2715</span>`+
+      '</div>'+
+      `<div class="wmeta" data-wmeta="${idx}"></div>`+
+      '<div class="wcalc">'+
+        `<span class="blk"><span class="lab">Attack</span><b data-watk="${idx}">\u2014</b></span>`+
+        `<span class="blk"><span class="lab">Damage &nbsp;Gl / Cln / Fl</span><span class="dmgv" data-wdmg="${idx}">\u2014</span></span>`+
+        `<span class="blk"><span class="lab">Parry</span><b data-wpar="${idx}">\u2014</b></span>`+
+      '</div>';
+    box.appendChild(card);
+    card.querySelector('[data-actw]').addEventListener('change',()=>{S.weapons.forEach((x,j)=>x.active=(j===idx));renderWeapons();recompute();});
+    card.querySelector('[data-rmw]').addEventListener('click',()=>{S.weapons.splice(idx,1);renderWeapons();recompute();});
+    card.querySelector('[data-wpick]').addEventListener('change',e=>{const n=e.target.value;if(n&&WEAPONS[n]){const d=WEAPONS[n];Object.assign(S.weapons[idx],{name:n,meas:d.m,spd:d.s,gl:d.g,cln:d.c,fl:d.f,shc:d.h,parry:d.p,type:d.t,skill:WSKILL[n]||S.weapons[idx].skill});renderWeapons();recompute();}});
+    card.querySelectorAll('input[data-w],select[data-w]').forEach(inp=>inp.addEventListener('input',e=>{S.weapons[+e.target.dataset.w][e.target.dataset.wk]=e.target.value;recompute();}));
+  });
+}
+function skillAttrAbbr(name){for(const g of SKILLGROUPS){if(g[2].indexOf(name)>=0)return g[1];}return null;}
+function weaponStats(w,G){
+  let atk=null,parry=null;
+  if(w.skill){
+    const sel=document.querySelector('select[data-scl="'+cssEsc(w.skill)+'"]');const v=sclVal(sel?+sel.value:0);
+    if(v!=null){
+      const osg=parseInt((document.querySelector('input[data-osg="'+cssEsc(w.skill)+'"]')||{}).value)||0;
+      const ab=skillAttrAbbr(w.skill);const am=ab?attrMod(ab):0;const gb=(G.skill[w.skill]||0);
+      const tot=v+am+osg+gb;atk=tot;
+      const pm=parseInt((w.parry||'').toString().replace(/[^\-\d]/g,''));parry=isNaN(pm)?null:tot+pm;
+    }
+  }
+  const phy=attrMod('PHY');const q=parseInt(w.qual)||0;
+  const dnum=x=>{const n=parseInt((x==null?'':x).toString().replace(/[^\-\d]/g,''));return isNaN(n)?null:n;};
+  const dmg=k=>{const b=dnum(w[k]);return b==null?null:b+phy+q;};
+  return {atk:atk,parry:parry,gl:dmg('gl'),cln:dmg('cln'),fl:dmg('fl')};
+}
+
+/* ---------- runic items ---------- */
+function updateOccReadout(){
+  const p=document.getElementById('occprime').value, s=document.getElementById('occsub').value;
+  const el=document.getElementById('occReadout');if(!el)return;
+  if(p||s){el.innerHTML='<span class="k">Occupation</span>'+esc((s?s:'')+(p&&s?' \u00b7 ':'')+(p?p:''));}
+  else{el.innerHTML='<span class="k">Occupation</span><span class="none">choose a prime and sub-occupation</span>';}
+}
+function addRep(r){r=r||{name:"",val:""};S.reps.push(r);renderRep();}
+function renderRep(){
+  const box=document.getElementById('reps');if(!box)return;box.innerHTML='';
+  S.reps.forEach((r,idx)=>{
+    const row=ce('div','rl-row');
+    row.innerHTML='<input data-rp="'+idx+'" data-rpk="name" class="rl-name" placeholder="with whom / where" value="'+esc(r.name)+'">'+
+      '<input data-rp="'+idx+'" data-rpk="val" class="rl-val" placeholder="value" value="'+esc(r.val)+'">'+
+      '<span class="rm" data-rmp="'+idx+'">\u2715</span>';
+    box.appendChild(row);
+    row.querySelector('[data-rmp]').addEventListener('click',()=>{S.reps.splice(idx,1);renderRep();});
+    row.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',e=>{S.reps[+e.target.dataset.rp][e.target.dataset.rpk]=e.target.value;}));
+  });
+}
+function toggleRunic(){S.runicOn=!S.runicOn;document.getElementById('runicSw').classList.toggle('on',S.runicOn);document.getElementById('runicWrap').style.display=S.runicOn?'block':'none';if(S.runicOn&&S.runics.length===0)addRunic();}
+function addRunic(r){r=r||{name:"",val:""};S.runics.push(r);renderRunics();}
+function renderRunics(){
+  const box=document.getElementById('runics');if(!box)return;box.innerHTML='';
+  S.runics.forEach((r,idx)=>{
+    const row=ce('div','rl-row');
+    row.innerHTML='<input data-r="'+idx+'" data-rk="name" class="rl-name" placeholder="item" value="'+esc(r.name)+'">'+
+      '<input data-r="'+idx+'" data-rk="val" class="rl-val" placeholder="values / notes" value="'+esc(r.val||'')+'">'+
+      '<span class="rm" data-rmr="'+idx+'">\u2715</span>';
+    box.appendChild(row);
+    row.querySelector('[data-rmr]').addEventListener('click',()=>{S.runics.splice(idx,1);renderRunics();});
+    row.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',e=>{S.runics[+e.target.dataset.r][e.target.dataset.rk]=e.target.value;}));
+  });
+}
+
+/* ---------- armour kit picker ---------- */
+function armourOpts(sel){return '<option value="">\u2014 choose a kit \u2014</option>'+Object.keys(ARMOUR).map(n=>`<option ${n===sel?'selected':''}>${esc(n)}</option>`).join('');}
+function fillArmourKit(n){
+  if(!n||!ARMOUR[n])return;const a=ARMOUR[n];
+  const set=(f,v)=>{const el=document.querySelector('[data-f="'+f+'"]');if(el){el.value=v;S.fields[f]=String(v);}};
+  set('dr_head',a[0]);set('dr_torso',a[1]);set('dr_wpn',a[2]);set('dr_off',a[3]);set('dr_legs',a[4]);set('load',a[5]);set('kitname',n);
+  recompute();
+}
+function collapseAllGGB(state){S.ggb.forEach(g=>g.collapsed=state);renderGGB();}
+
+/* ---------- portrait ---------- */
+function loadPortrait(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{S.portrait=r.result;applyPortrait();};r.readAsDataURL(f);ev.target.value='';}
+function applyPortrait(){const p=document.getElementById('portrait');if(S.portrait){p.style.backgroundImage=`url(${S.portrait})`;p.innerHTML='';}else{p.style.backgroundImage='';p.innerHTML='<span>Click to add<br>a portrait</span>';}}
+
+/* ---------- GGB ledger ---------- */
+function ggbOptions(selName){
+  const groups=[["Lineage","L"],["Endowment","E"]],kinds=[["Gift","G"],["Grace","R"],["Burden","B"]];
+  let html='<option value="">\u2014 choose \u2014</option>';
+  groups.forEach(([gn,gc])=>{kinds.forEach(([kn,kc])=>{
+    const list=GGB.filter(e=>e.s===gc&&e.k===kc);
+    if(!list.length)return;
+    html+=`<optgroup label="${gn} ${kn}s">`+list.map(e=>`<option value="${esc(e.n)}|${gc}${kc}" ${e.n===selName?'selected':''}>${esc(e.n)}</option>`).join('')+'</optgroup>';
+  });});
+  return html;
+}
+function findGGB(name){return GGB.find(e=>e.n===name);}
+function addGGB(g){g=g||{name:"",toggles:{}};S.ggb.push(g);renderGGB();}
+function renderGGB(){
+  const wrap=document.getElementById('ggbList');wrap.innerHTML='';
+  S.ggb.forEach((g,idx)=>{
+    const entry=findGGB(g.name);
+    const card=ce('div','gcard'+(g.collapsed?' collapsed':''));
+    const kindTag=entry?(entry.k==='B'?'<span class="gtag R">Burden</span>':`<span class="gtag G">${entry.s==='L'?'Lineage':'Endow'} ${entry.k==='R'?'Grace':'Gift'}</span>`):'';
+    const chev=entry?`<span class="gcollapse" data-col="${idx}" title="${g.collapsed?'expand':'collapse'}">${g.collapsed?'\u25B8':'\u25BE'}</span>`:'<span class="gcollapse"></span>';
+    const top=ce('div','gtop',`${chev}<select data-ggb="${idx}">${ggbOptions(g.name)}</select>${kindTag}<span class="rm" data-rmg="${idx}">\u2715</span>`);
+    card.appendChild(top);
+    const eff=ce('div','geff');
+    if(entry){
+      entry.m.forEach((m,mi)=>{
+        if(m.x==='a'){
+          eff.appendChild(ce('div','efrow auto',`<span class="eftag a">auto</span><span class="et">${esc(m.t)}</span>`));
+        }else if(m.x==='t'){
+          const on=!!g.toggles[mi];
+          const r=ce('div','efrow toggle');
+          r.innerHTML=`<span class="sw ${on?'on':''}" data-tg="${idx}:${mi}"></span><span class="et">${esc(m.t)}</span>`;
+          eff.appendChild(r);
+        }else{
+          eff.appendChild(ce('div','efrow note',`<span class="eftag n">note</span><span class="et">${esc(m.t)}</span>`));
+        }
+      });
+      (entry.no||[]).forEach(n=>eff.appendChild(ce('div','efrow note',`<span class="eftag n">note</span><span class="et">${esc(n)}</span>`)));
+    }
+    card.appendChild(eff);wrap.appendChild(card);
+    top.querySelector('select').addEventListener('change',e=>{S.ggb[idx]={name:e.target.value.split('|')[0],toggles:{},collapsed:false};renderGGB();recompute();});
+    top.querySelector('[data-rmg]').addEventListener('click',()=>{S.ggb.splice(idx,1);renderGGB();recompute();});
+    const col=top.querySelector('[data-col]');if(col)col.addEventListener('click',()=>{S.ggb[idx].collapsed=!S.ggb[idx].collapsed;renderGGB();});
+    card.querySelectorAll('.sw[data-tg]').forEach(sw=>sw.addEventListener('click',()=>{const[i,m]=sw.dataset.tg.split(':');S.ggb[i].toggles[m]=!S.ggb[i].toggles[m];renderGGB();recompute();}));
+  });
+}
+
+/* ---------- the engine ---------- */
+function gatherGifts(){
+  // returns {skill:{name:sum}, attr:{}, momentum, wound:{}, ap, attrcap:{}, active:[]}
+  const R={skill:{},attr:{},momentum:0,wound:{},ap:0,attrcap:{},active:[]};
+  S.ggb.forEach(g=>{
+    const e=findGGB(g.name);if(!e)return;
+    e.m.forEach((m,mi)=>{
+      const live=(m.x==='a')||(m.x==='t'&&g.toggles[mi]);
+      if(m.x==='t'&&g.toggles[mi])R.active.push(`${e.n}: ${m.t}`);
+      if(!live||m.v==null)return;
+      (m.g||[]).forEach(tg=>{
+        if(tg[0]==='skill')R.skill[tg[1]]=(R.skill[tg[1]]||0)+m.v;
+        else if(tg[0]==='attr')R.attr[tg[1]]=(R.attr[tg[1]]||0)+m.v;
+        else if(tg[0]==='momentum')R.momentum+=m.v;
+        else if(tg[0]==='wound')R.wound[tg[1]]=(R.wound[tg[1]]||0)+m.v;
+        else if(tg[0]==='ap')R.ap+=m.v;
+        else if(tg[0]==='attrcap')R.attrcap[tg[1]]=true;
+      });
+    });
+  });
+  return R;
+}
+function woundCap(phy){const cap={Bruise:14,Flesh:5,Telling:3,Critical:2};const cyc=["Flesh","Telling","Critical"];for(let i=0;i<phy;i++){cap.Bruise+=1;cap[cyc[i%3]]+=1;}return cap;}
+function renderWoundBoxes(t,count){const w=document.querySelector('.wbox[data-tier="'+t+'"]');if(!w)return;const cur=S.wounds[t]||0;w.innerHTML='';for(let i=1;i<=count;i++){const b=ce('div','wb'+(t==='Critical'?' crit':'')+(i<=cur?' on':''));b.dataset.n=i;b.addEventListener('click',()=>{S.wounds[t]=(S.wounds[t]===i?i-1:i);renderWoundBoxes(t,count);});w.appendChild(b);}}
+
+function recompute(){
+  const G=gatherGifts();
+  // group IA value boxes
+  SKILLGROUPS.forEach(g=>{const b=document.querySelector('[data-iaval="'+g[1]+'"]');if(b)b.textContent=attrMod(g[1]);});
+  // skills
+  SKILLGROUPS.forEach(g=>{g[2].forEach(sk=>{
+    const sel=document.querySelector('select[data-scl="'+cssEsc(sk)+'"]');const v=sclVal(sel?+sel.value:0);
+    const osg=parseInt((document.querySelector('input[data-osg="'+cssEsc(sk)+'"]')||{}).value)||0;
+    const gb=G.skill[sk]||0;
+    const tot=document.querySelector('[data-tot="'+cssEsc(sk)+'"]');
+    const gbsp=document.querySelector('[data-gb="'+cssEsc(sk)+'"]');
+    if(gbsp)gbsp.textContent=gb?(gb>0?'+'+gb:gb):'';
+    if(v==null){tot.textContent='\u2014';tot.classList.add('zero');}
+    else{const m=v+attrMod(g[1])+osg+gb;tot.textContent=(m>=0?'+':'')+m;tot.classList.remove('zero');}
+  });});
+  // martial prowess
+  const mpsel=document.querySelector('select[data-scl="Martial Prowess"]');const mpi=mpsel?+mpsel.value:0;const mpv=sclVal(mpi);const mpTitle=SCLV[mpi][0];const mpBase=mpv==null?0:mpv;
+  const mpOsg=parseInt((document.querySelector('input[data-osg="Martial Prowess"]')||{}).value)||0;
+  const mpGb=G.skill["Martial Prowess"]||0;
+  const mptot=document.querySelector('[data-tot="Martial Prowess"]');
+  if(mpv==null){mptot.textContent='\u2014';mptot.classList.add('zero');}else{const m=mpv+mpOsg+mpGb;mptot.textContent='+'+m;mptot.classList.remove('zero');}
+  const mpEff=mpBase+mpOsg+mpGb; // used in BA/defence (skill component)
+  // AP
+  const apMax=(BASEAP[mpTitle]||1)+attrMod('INT')+G.ap+(parseInt(getF('apAdj'))||0);
+  document.getElementById('apMax').textContent=apMax;
+  document.getElementById('apF').textContent=`${mpTitle} (${BASEAP[mpTitle]||1}) + INT ${attrMod('INT')}`;
+  if(S.ap>apMax)S.ap=apMax;
+  buildPips('apPips',Math.max(apMax,1),null,()=>S.ap,v=>{S.ap=v;paintPips('apPips',S.ap);});paintPips('apPips',S.ap);
+  document.getElementById('apLabel').textContent=`${S.ap} / ${apMax} \u00b7 max 3 offensive`;
+  // BA
+  document.getElementById('baReveal').innerHTML=(mpEff+attrMod('PER'))+'<small>+d10</small>';
+  document.getElementById('baConceal').innerHTML=(mpEff+attrMod('PER'))+'<small>+d10</small>';
+  // defences
+  const shield=parseInt(getF('shield'))||0;
+  setDef('d_evade',mpEff+attrMod('DEX'));
+  setDef('d_block',mpEff+shield);
+  setDef('d_counter',mpEff+attrMod('DEX'));
+  setDef('d_cover',mpEff+attrMod('DEX')-4);
+  // weapons: attack / damage(+PHY+quality) / parry(skill total + parry mod) per card; active feeds the Exchange
+  const fmt=v=>(v==null)?'\u2014':((v>=0?'+':'')+v);
+  const fmtd=v=>(v==null)?'\u2014':String(v);
+  let activeStats=null,activeW=null;
+  S.weapons.forEach((w,idx)=>{
+    const st=weaponStats(w,G);
+    const meta=[w.meas,(w.spd!==''&&w.spd!=null?'Spd '+w.spd:''),w.type,(w.shc!==''&&w.shc!=null?'SHC '+w.shc:''),(w.parry==='N/A'?'cannot parry':(w.parry!==''&&w.parry!=null?'parry '+w.parry:''))].filter(Boolean).join(' \u00b7 ');
+    const mE=document.querySelector('[data-wmeta="'+idx+'"]');if(mE)mE.textContent=meta;
+    const aE=document.querySelector('[data-watk="'+idx+'"]');if(aE)aE.textContent=fmt(st.atk);
+    const dE=document.querySelector('[data-wdmg="'+idx+'"]');if(dE)dE.innerHTML=(st.gl==null&&st.cln==null&&st.fl==null)?'\u2014':(fmtd(st.gl)+' <s>/</s> '+fmtd(st.cln)+' <s>/</s> '+fmtd(st.fl));
+    const pE=document.querySelector('[data-wpar="'+idx+'"]');if(pE)pE.textContent=(st.parry==null)?'\u2014':fmt(st.parry);
+    if(w.active){activeStats=st;activeW=w;}
+  });
+  // active strike readout
+  const setStk=(id,html)=>{const e=document.getElementById(id);if(e)e.innerHTML=html;};
+  if(activeStats){
+    setStk('stkAtk',fmt(activeStats.atk)+'<small>+d10</small>');
+    setStk('stkGl',fmtd(activeStats.gl));setStk('stkCln',fmtd(activeStats.cln));setStk('stkFl',fmtd(activeStats.fl));
+    setStk('stkPar',(activeStats.parry==null?'\u2014':fmt(activeStats.parry))+'<small>+d10</small>');
+    const nm=(activeW.name||'unnamed weapon');const sk=activeW.skill?(' \u00b7 '+activeW.skill):' \u00b7 set a weapon skill';
+    document.getElementById('strikeName').textContent=nm+sk;
+  }else{
+    ['stkAtk','stkPar'].forEach(id=>setStk(id,'\u2014<small>+d10</small>'));['stkGl','stkCln','stkFl'].forEach(id=>setStk(id,'\u2014'));
+    document.getElementById('strikeName').textContent='no active weapon selected';
+  }
+  // parry defence row uses the active weapon
+  const parry=activeStats?activeStats.parry:null;
+  document.querySelectorAll('[data-def="d_parry"]').forEach(e=>e.textContent=(parry==null)?'\u2014':((parry>=0?'+':'')+parry));
+  // momentum cap
+  const momCap=5+G.momentum+(parseInt(getF('momAdj'))||0);
+  document.getElementById('momCap').textContent=momCap;
+  if(S.mom>momCap)S.mom=momCap;
+  buildPips('momPips',Math.max(momCap,1),'brass',()=>S.mom,v=>{S.mom=v;paintPips('momPips',S.mom,'brass');});paintPips('momPips',S.mom,'brass');
+  // wounds
+  const baseCap=woundCap(attrMod('PHY'));
+  ["Bruise","Flesh","Telling","Critical"].forEach(t=>{
+    const adj=parseInt((document.querySelector('input[data-wadj="'+t+'"]')||{}).value)||0;
+    const cap=Math.max(0,baseCap[t]+(G.wound[t]||0)+adj);
+    document.querySelector('[data-cap="'+t+'"]').textContent=cap;renderWoundBoxes(t,cap);
+  });
+  // active conditional modifiers readout
+  const am=document.getElementById('activeMods');
+  am.innerHTML='<div class="amh">Active conditional modifiers</div>'+(G.active.length?G.active.map(a=>`<div>\u2022 ${esc(a)}</div>`).join(''):'<div class="none">none switched on</div>');
+  updateMast();
+}
+function updateMast(){
+  const nm=(getF('name')||'').trim();
+  const ti=(getF('titles')||'').trim();
+  const cn=document.getElementById('charName');if(cn)cn.textContent=nm||'The Protagonist';
+  const ct=document.getElementById('charTitles');if(ct)ct.textContent=ti||'A character marked by fate \u2014 bearer of a Chronique Infinie and the Sceau du Sort';
+}
+function setDef(k,v){document.querySelectorAll('[data-def="'+k+'"]').forEach(e=>e.textContent=(v>=0?'+':'')+v);}
+
+/* ---------- fields ---------- */
+function wireFields(){document.querySelectorAll('[data-f]').forEach(el=>{el.addEventListener('input',()=>{S.fields[el.dataset.f]=el.value;if(['shield','momAdj','apAdj'].includes(el.dataset.f))recompute();if(['name','titles'].includes(el.dataset.f))updateMast();});el.addEventListener('change',()=>{S.fields[el.dataset.f]=el.value;});});}
+
+/* ---------- save / load ---------- */
+function collect(){
+  S.fields={};document.querySelectorAll('[data-f]').forEach(el=>S.fields[el.dataset.f]=el.value);
+  S.skills={};document.querySelectorAll('select[data-scl]').forEach(s=>S.skills[s.dataset.scl]=+s.value);
+  return JSON.parse(JSON.stringify(S));
+}
+function saveJSON(){const d=collect();const name=(d.fields.name||'character').replace(/[^a-z0-9]+/gi,'_');const b=new Blob([JSON.stringify(d)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='BTAS_'+name+'.json';a.click();}
+function loadJSON(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{applyState(JSON.parse(r.result));}catch(e){alert('Could not read that file.');}ev.target.value='';};r.readAsText(f);}
+function applyState(d){
+  S=Object.assign({attrs:[0,0,0,0,0,0],ggb:[],weapons:[],runics:[],reps:[],conds:{},tier:"",tierText:{},ap:0,mom:0,wounds:{Bruise:0,Flesh:0,Telling:0,Critical:0},fields:{},portrait:"",osgOverride:{},runicOn:false},d);
+  (S.attrs||[]).forEach((v,i)=>{const el=document.querySelector('[data-attr="'+i+'"]');if(el)el.value=v;});
+  Object.entries(S.fields||{}).forEach(([k,v])=>{const el=document.querySelector('[data-f="'+k+'"]');if(el)el.value=v;});
+  if(S.fields&&S.fields.occprime){fillSubocc(S.fields.occprime,S.fields.occsub||'');}
+  Object.entries(S.skills||{}).forEach(([k,v])=>{const sel=document.querySelector('select[data-scl="'+cssEsc(k)+'"]');if(sel)sel.value=v;});
+  Object.entries(S.osgOverride||{}).forEach(([k,v])=>{const inp=document.querySelector('input[data-osg="'+cssEsc(k)+'"]');if(inp)inp.value=v;});
+  document.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('on',!!(S.conds&&S.conds[ch.dataset.cond])));
+  applyPortrait();
+  document.getElementById('runicSw').classList.toggle('on',S.runicOn);document.getElementById('runicWrap').style.display=S.runicOn?'block':'none';
+  renderWeapons();renderRunics();renderRep();renderGGB();renderTierPanels();paintTiers();updateOccReadout();
+  (function(){const ap=document.getElementById('armourPick');if(ap)ap.innerHTML=armourOpts((S.fields&&S.fields.kitname)||'');})();
+  recompute();
+  paintPips('apPips',S.ap);paintPips('momPips',S.mom,'brass');
+}
+
+/* ---------- init ---------- */
+buildOcc();buildAttrs();buildSkills();buildDefences();buildWounds();buildConds();buildTiers();wireFields();
+(function(){const ap=document.getElementById('armourPick');if(ap)ap.innerHTML=armourOpts('');})();
+if(S.weapons.length===0)addWeapon();
+if(S.reps.length===0)addRep();
+updateOccReadout();
+recompute();
+</script></body></html>
